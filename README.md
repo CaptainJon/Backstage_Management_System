@@ -1,4 +1,4 @@
-# aether_gm_backstage
+# Backstage_Management_System
 
 ## 技术栈 Vue / Element-UI / Axios
 
@@ -27,30 +27,30 @@ npm run lint
 
 # 项目目录
 
-|-- node_modules
-|-- public
-    |-- favicon.ico
-    |-- index.html
-|-- src
-    |-- assets
-        |-- css
-        |-- images
-    |-- components
-    |-- plugins
-        |-- element.js
-    |-- router
-        |-- index.js
-    |-- views
-        |-- home
-            |-- operate
-            |-- economy
-            |-- battle
-            |-- game
-            |-- gm
-            |-- querydata
-        |-- login
-            |-- login.vue
-|-- App.vue
-|-- main.js
+|-- node_modules  
+|-- public  
+    |-- favicon.ico  
+    |-- index.html  
+|-- src  
+    |-- assets  
+        |-- css  
+        |-- images  
+    |-- components  
+    |-- plugins  
+        |-- element.js  
+    |-- router  
+        |-- index.js  
+    |-- views  
+        |-- home  
+            |-- operate  
+            |-- economy  
+            |-- battle  
+            |-- game  
+            |-- gm  
+            |-- querydata  
+        |-- login  
+            |-- login.vue  
+|-- App.vue  
+|-- main.js  
     
 
