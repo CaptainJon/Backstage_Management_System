@@ -1,7 +1,7 @@
 @charset "utf-8";
 /* =================================重置样式================================= */
 html {height:100%;font-family: "Microsoft YaHei"; line-height: 1.15;color:#000}
-body{background-color: #fff}
+body{background-color: #fff;height: 100%;}
 body,h1,h2,h3,h4,h5,h6,hr,p,dl,dt,dd,ul,ol,li,form,button,input,textarea,th,td{margin:0;padding:0}
 ul,ol{list-style:none}
 /* =================================全局覆盖样式================================= */
