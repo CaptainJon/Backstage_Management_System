@@ -1,44 +1,11 @@
 @charset "utf-8";
-/* =================================公共样式================================= */
+/* =================================重置样式================================= */
 html {height:100%;font-family: "Microsoft YaHei"; line-height: 1.15;color:#000}
 body{background-color: #fff}
 body,h1,h2,h3,h4,h5,h6,hr,p,dl,dt,dd,ul,ol,li,form,button,input,textarea,th,td{margin:0;padding:0}
-textarea{resize:vertical;overflow: auto}
 ul,ol{list-style:none}
-button{cursor:pointer;border: 1px solid #999;user-select: none;border-radius: 4px;text-align: center;background-color: #fff;}
-a {background-color: transparent;text-decoration: none;color:inherit}
-a:active,a:hover {outline-width: 0;text-decoration: none}
-article,aside,footer,header,nav,section {display: block}
-img {border-style: none}
-button,input,select,textarea {font-family: sans-serif,"Microsoft YaHei"}
-legend {box-sizing: border-box;color: inherit;display: table;padding: 0 5px;white-space: normal;font-weight: 600;font-size: 16px;border: 0;width: auto;}
-[hidden] {display: none}
-fieldset{border: 1px solid #999;padding: 5px 20px 10px 20px;color: inherit;margin: 0}
-input,textarea{border: 1px solid #999;}
-select{padding: 3px;outline: 0}
-header,footer,nav{display:block}
+/* =================================全局覆盖样式================================= */
 
-/* =================================公共类名================================= */
-.left{float:left}
-.right{float:right}
-.hide{display:none}
-.clearfix:after{content:'\20';display:block;height:0;clear:both}
-.clearfix{zoom:1}
-.clear{clear:both;height:0;line-height:0;font-size:0;visibility:hidden;overflow:hidden}
-/* 按钮 */
-.btn-primary{background-color: #337ab7;color: #fff;border: 1px solid #2e6da4}
-.btn-primary:hover{background-color: #286090;border-color: #204d74;}
-.btn-danger{background-color: #d9534f;color: #fff;border: 1px solid #c62b26}
-.btn-danger:hover{background-color: #c9302c;border-color: #ac2925;}
-.table{border-collapse:collapse;border-spacing:0;text-align: center}
-.table th,.table td{border: 1px solid #999;vertical-align: middle}
-/* 开关 */
-.switch-box{display: inline-block;width: 40px!important;height: 22px!important}
-.switch-box .switch{display: none}
-.switch-box .slider{position: relative;width: 40px!important;height: 15px!important;border-radius: 17px;background-color: #ccc;margin-bottom: 0;vertical-align:top;cursor: pointer;transition: all 0.2s ease;display: inline-block;user-select: none;}
-.switch-box .slider:after{position: absolute;left: -7px;top: -3px;bottom: 0;content: '��';width: 20px;height: 20px;border-radius: 20px;transition: all 0.2s ease;box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.2);background: #979595;text-align: center;line-height: 20px;color: #fff;font-size: 9px}
-.switch-box .switch:checked~.slider:after{background-color: rgb(11, 141, 11);left: 20px;content: '��'}
-.switch-box .switch:checked~.slider{background-color: rgb(119, 189, 119)}
 
 
 
