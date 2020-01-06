@@ -53,8 +53,11 @@ export default {
         if (valid) {
           // 格式验证成功
           this.$http.post('/api/gadmin/loginWithVerificationCodeServlet', this.loginForm).then(res => {
-            this.$message.success('登录成功')
-            this.$router.push('/home')
+            var aaa = document.cookie
+            console.log(aaa)
+            console.log(11)
+            // this.$message.success('登录成功')
+            // this.$router.push('/home')
           }).catch(() => {
             this.$message.error('账户名或密码错误')
           })

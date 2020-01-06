@@ -1,0 +1,25 @@
+import Mock from 'mockjs'
+
+// 新手引导数据
+Mock.mock('/api/gadminc/business/guideData.json', {
+  'nameList|13': ['@cword(2,5)'],
+  'numList|13': ['@integer(300,3000)']
+})
+
+// 游戏英雄数据
+Mock.mock('/api/gadminc/business/hero.json', {
+  'herosData|20': [{
+    'name': '@cname(2, 4)',
+    'avgLevel': '@integer(1,60)',
+    'avgStar': '@integer(1,7)',
+    'ordinarySkill': '@integer(1,6)',
+    'activeSkill': '@integer(1,6)',
+    'passiveSkill': '@integer(1,6)',
+    'weaponLevel': '@integer(1,60)',
+    'mainStory': '@integer(1,20000)',
+    'voidCrack': '@integer(1,10000)',
+    'sportsLadder': '@integer(1,2000)',
+    'arenaTrain': '@integer(1,3000)',
+    'rank': '@integer(1,10)'
+  }]
+})

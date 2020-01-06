@@ -11,11 +11,11 @@ import axios from 'axios'
 import './assets/css/normalize.css'
 import './assets/css/global.css'
 
+import './mockdata/mockdata'
+
 // 额外设置
 Vue.config.productionTip = false
-// 1.设置axios请求根路径
-// axios.defaults.baseURL = 'http://106.52.104.153:8281'
-// axios.defaults.headers.post['Content-Type'] = 'application/x-www-form-urlencoded'
+
 // 1.将axios挂载到Vue原型
 Vue.prototype.$http = axios
 

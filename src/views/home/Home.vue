@@ -1,20 +1,87 @@
 <template>
   <div class="homeBox">
-    <div class="header">
-      <el-row type="flex" justify="space-between" align="center">
-        <el-col :span="5" class="headerTitle">次元守望GM管理后台</el-col>
-        <el-col :span="2" class="accountArea">
-          <el-avatar src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png" size="small"></el-avatar>
-          <i class="el-icon-arrow-down"></i>
-          <div class="logoutArea">
-            <ul>
-              <li>修改密码</li>
-              <li>退出系统</li>
-            </ul>
-          </div>
-        </el-col>
-      </el-row>
-    </div>
+    <el-container class="homeContainer">
+      <!-- 顶部栏 -->
+      <el-header>
+        <el-row align="center" justify="space-between" type="flex">
+          <el-col :span="5" class="headerTitle">次元守望GM管理后台</el-col>
+          <el-col :span="2" class="accountArea">
+            <el-avatar
+              size="small"
+              src="https://cube.elemecdn.com/0/88/03b0d39583f48206768a7534e55bcpng.png"
+            ></el-avatar>
+            <i class="el-icon-arrow-down"></i>
+            <div class="logoutArea">
+              <ul>
+                <li>修改密码</li>
+                <li>退出系统</li>
+              </ul>
+            </div>
+          </el-col>
+        </el-row>
+      </el-header>
+      <el-container>
+        <!-- 左侧导航栏 -->
+        <el-aside>
+          <el-menu background-color="#fff" router text-color="#333" unique-opened>
+            <el-submenu index="0">
+              <template slot="title">
+                <i class="el-icon-cpu"></i>
+                <span>游戏系统</span>
+              </template>
+              <el-menu-item index="/newerguide">新手引导</el-menu-item>
+              <el-menu-item index="heros">游戏英雄</el-menu-item>
+              <el-menu-item index="2">系统功能</el-menu-item>
+              <el-menu-item index="3">核芯装备</el-menu-item>
+              <el-menu-item index="4">战队信息</el-menu-item>
+              <el-menu-item index="5">战队活动</el-menu-item>
+              <el-menu-item index="6">基地设施</el-menu-item>
+            </el-submenu>
+            <el-submenu index="1">
+              <template slot="title">
+                <i class="el-icon-coordinate"></i>
+                <span>战斗系统</span>
+              </template>
+              <el-menu-item index="0">竞技场</el-menu-item>
+              <el-menu-item index="1">主线剧情</el-menu-item>
+              <el-menu-item index="2">天启大战</el-menu-item>
+              <el-menu-item index="3">虚空秘境</el-menu-item>
+              <el-menu-item index="4">时空裂隙</el-menu-item>
+            </el-submenu>
+            <el-submenu index="2">
+              <template slot="title">
+                <i class="el-icon-s-goods"></i>
+                <span>经济系统</span>
+              </template>
+              <el-menu-item index="0">游戏商店</el-menu-item>
+              <el-menu-item index="1">金币系统</el-menu-item>
+              <el-menu-item index="2">晶体钻石</el-menu-item>
+            </el-submenu>
+            <el-submenu index="3">
+              <template slot="title">
+                <i class="el-icon-s-data"></i>
+                <span>运营数据</span>
+              </template>
+              <el-menu-item index="0">新增用户</el-menu-item>
+              <el-menu-item index="1">在线统计</el-menu-item>
+              <el-menu-item index="2">次日留存</el-menu-item>
+              <el-menu-item index="3">活跃用户</el-menu-item>
+            </el-submenu>
+            <el-submenu index="4">
+              <template slot="title">
+                <i class="el-icon-s-tools"></i>
+                <span>GM操作</span>
+              </template>
+              <el-menu-item index="0">奖励发放</el-menu-item>
+            </el-submenu>
+          </el-menu>
+        </el-aside>
+        <!-- 内容区域 -->
+        <el-main>
+          <router-view></router-view>
+        </el-main>
+      </el-container>
+    </el-container>
   </div>
 </template>
 
@@ -25,12 +92,50 @@ export default {
 </script>
 
 <style>
-.header{
-  width: 100%;
-  height: 50px;
-  background-color: #00343F;
+.homeBox {
+  height: 100%;
 }
-.header .headerTitle{
+.homeBox .homeContainer {
+  height: 100%;
+}
+.homeBox .el-header {
+  background-color: #00343f;
+  height: 50px !important;
+}
+.homeBox .el-aside {
+  background-color: #fff;
+  width: 170px !important;
+  border-right: 1px solid #ddd;
+  transition: all 0.5s;
+}
+.homeBox .el-aside .el-menu {
+  width: 169px !important;
+  box-sizing: border-box;
+  border-right: none;
+}
+.el-menu .el-submenu .el-menu-item {
+  height: 35px;
+  line-height: 35px;
+  border-bottom: none !important;
+}
+.homeBox .el-aside .el-menu li {
+  border-bottom: 1px solid #e5e5e5;
+}
+.homeBox .el-aside .el-menu .el-submenu__title {
+  height: 35px;
+  line-height: 35px;
+}
+.homeBox .el-aside .el-menu .el-submenu__title i {
+  color: #00343f;
+}
+.homeBox .el-aside .el-menu .el-submenu__title:hover {
+  background-color: #fff !important;
+  color: #148cf1 !important;
+}
+.homeBox .el-main {
+  background-color: #eaedf1;
+}
+.homeBox .el-header .headerTitle {
   color: #fff;
   font-size: 20px;
   font-weight: bold;
@@ -38,30 +143,30 @@ export default {
   line-height: 50px;
   margin-left: 20px;
 }
-.header .el-avatar{
+.homeBox .el-header .el-avatar {
   margin-top: 11px;
 }
-.header .el-icon-arrow-down{
+.homeBox .el-header .el-icon-arrow-down {
   display: inline-block;
   line-height: 50px;
   color: #fff;
   vertical-align: top;
   margin: 0 10px;
 }
-.header .accountArea{
+.homeBox .el-header .accountArea {
   padding-left: 15px;
   margin-right: 15px;
   cursor: pointer;
   position: relative;
   text-align: center;
 }
-.header .accountArea:hover{
+.homeBox .el-header .accountArea:hover {
   background-color: #012127;
 }
-.header .accountArea:hover .logoutArea{
+.homeBox .el-header .accountArea:hover .logoutArea {
   display: block;
 }
-.header .accountArea .logoutArea{
+.homeBox .el-header .accountArea .logoutArea {
   width: 160px;
   text-align: center;
   position: absolute;
@@ -74,12 +179,19 @@ export default {
   border-radius: 0 0 5px 5px;
   display: none;
 }
-.header .accountArea .logoutArea ul li{
+.homeBox .el-header .accountArea .logoutArea ul li {
   line-height: 30px;
   letter-spacing: 1px;
 }
-.header .accountArea .logoutArea ul li:hover{
-  background-color: #035A69;
+.homeBox .el-header .accountArea .logoutArea ul li:hover {
+  background-color: #035a69;
   color: #fff;
+}
+.el-menu-vertical-demo {
+  width: 180px;
+}
+.el-menu-vertical-demo .el-menu-item {
+  width: 180px;
+  min-width: 180px !important;
 }
 </style>
