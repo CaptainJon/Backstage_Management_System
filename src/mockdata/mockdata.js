@@ -23,3 +23,11 @@ Mock.mock('/api/gadminc/business/hero.json', {
     'rank': '@integer(1,10)'
   }]
 })
+
+// 任务系统数据
+Mock.mock('/api/gadminc/business/system.json', {
+  'missionList|4': ['@integer(200,1500)'],
+  'callList|7': ['@integer(200,1500)'],
+  'heroList|8': ['@integer(200,1500)'],
+  'otherList|4': ['@integer(200,1500)']
+})
