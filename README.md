@@ -38,7 +38,8 @@ npm run lint
             |-- normalize.css            网页重置样式  
         |-- images                       图片资源  
     |-- publicComponents
-        |-- EchartsTemplate.vue          <echarts-template>Echarts数据表组件，详细API见下方公共组件介绍           
+        |-- EchartsTemplate.vue          <echarts-template>Echarts数据表组件，详细API见下方公共组件介绍  
+        |-- TimeSelect.Vue               <time-select>时间选择组件，详细API见下方公共组件介绍         
     |-- plugins  
         |-- element.js                   ElementUI插件配置  
     |-- router  

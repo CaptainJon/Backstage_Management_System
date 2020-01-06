@@ -30,8 +30,8 @@
                 <span>游戏系统</span>
               </template>
               <el-menu-item index="/newerguide">新手引导</el-menu-item>
-              <el-menu-item index="heros">游戏英雄</el-menu-item>
-              <el-menu-item index="2">系统功能</el-menu-item>
+              <el-menu-item index="/heros">游戏英雄</el-menu-item>
+              <el-menu-item index="/gamesystem">系统功能</el-menu-item>
               <el-menu-item index="3">核芯装备</el-menu-item>
               <el-menu-item index="4">战队信息</el-menu-item>
               <el-menu-item index="5">战队活动</el-menu-item>

@@ -1,5 +1,5 @@
 import Vue from 'vue'
-import { Button, Form, FormItem, Input, MessageBox, Message, Row, Col, Avatar, Menu, MenuItem, Submenu, Header, Aside, Main, Container, Breadcrumb, BreadcrumbItem, Card, Table, TableColumn } from 'element-ui'
+import { Button, Form, FormItem, Input, MessageBox, Message, Row, Col, Avatar, Menu, MenuItem, Submenu, Header, Aside, Main, Container, Breadcrumb, BreadcrumbItem, Card, Table, TableColumn, DatePicker } from 'element-ui'
 
 Vue.use(Container)
 Vue.use(Header)
@@ -20,5 +20,6 @@ Vue.use(BreadcrumbItem)
 Vue.use(Card)
 Vue.use(Table)
 Vue.use(TableColumn)
+Vue.use(DatePicker)
 Vue.prototype.$msgbox = MessageBox
 Vue.prototype.$message = Message
