@@ -2,7 +2,12 @@
   <div class="chartBox">
     <div class="chartBoxTitle">{{title}}</div>
     <slot>
-      <div :style="{height: height}" :id="echartsIns" class="templateChartArea"></div>
+      <div
+        :id="echartsInstance"
+        :ref="'ref' + echartsInstance"
+        :style="{height: height}"
+        class="templateChartArea"
+      ></div>
     </slot>
   </div>
 </template>
@@ -56,7 +61,7 @@ export default {
     },
     ygap: {
       type: Number,
-      default: 40
+      default: 50
     },
     ydata: {
       type: Array,
@@ -66,12 +71,12 @@ export default {
     }
   },
   mounted() {
-    this.$nextTick(function() {
-      // 表格初始化
-      const templateChart = echarts.init(
-        document.getElementById(this.echartsIns)
-      )
-      // 表格配置
+    this.renderCharts()
+  },
+  methods: {
+    // 表格初始化+渲染
+    renderCharts() {
+      const templateChart = echarts.init(document.getElementById(this.echartsInstance))
       templateChart.setOption({
         title: {
           text: this.title
@@ -108,11 +113,11 @@ export default {
         },
         series: this.ydata
       })
-    })
+    }
   },
   computed: {
-    // 每次表格实例的ID不一致
-    echartsIns() {
+    // 保证每次表格实例化绑定的ID不一致
+    echartsInstance() {
       return 'echarts' + Math.random() * 1000000
     }
   }
