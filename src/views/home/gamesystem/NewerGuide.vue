@@ -6,7 +6,7 @@
       <el-breadcrumb-item>新手引导</el-breadcrumb-item>
     </el-breadcrumb>
     <el-card>
-      <echarts-template :xdata="xdata" :ydata="ydata" title="新手引导人数分布" v-if="xdata.length > 0"></echarts-template>
+      <echarts-template :xdata="xdata" :ydata="ydata" yname="体验人数" xname="引导位置" title="新手引导人数分布" :ygap="60" v-if="xdata.length > 0"></echarts-template>
     </el-card>
   </div>
 </template>
