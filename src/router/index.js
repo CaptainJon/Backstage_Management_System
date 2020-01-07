@@ -26,7 +26,8 @@ const routes = [
       { path: '/corearmor', component: () => import(/* webpackChunkName: "gamesystem" */ '../views/home/gamesystem/CoreArmor.vue') },
       { path: '/guildinfo', component: () => import(/* webpackChunkName: "gamesystem" */ '../views/home/gamesystem/GuildInfo.vue') },
       { path: '/guildevent', component: () => import(/* webpackChunkName: "gamesystem" */ '../views/home/gamesystem/GuildEvent.vue') },
-      { path: '/basebuilding', component: () => import(/* webpackChunkName: "gamesystem" */ '../views/home/gamesystem/BaseBuilding.vue') }
+      { path: '/basebuilding', component: () => import(/* webpackChunkName: "gamesystem" */ '../views/home/gamesystem/BaseBuilding.vue') },
+      { path: '/arena', component: () => import(/* webpackChunkName: "battlesystem" */ '../views/home/battlesystem/Arena.vue') }
     ]
   }
 ]

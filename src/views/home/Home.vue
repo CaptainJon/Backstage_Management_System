@@ -42,7 +42,7 @@
                 <i class="el-icon-coordinate"></i>
                 <span>战斗系统</span>
               </template>
-              <el-menu-item index="0">竞技场</el-menu-item>
+              <el-menu-item index="/arena">竞技场</el-menu-item>
               <el-menu-item index="1">主线剧情</el-menu-item>
               <el-menu-item index="2">天启大战</el-menu-item>
               <el-menu-item index="3">虚空秘境</el-menu-item>

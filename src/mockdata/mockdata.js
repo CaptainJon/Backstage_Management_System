@@ -75,3 +75,14 @@ Mock.mock('/api/gadminc/business/basement.json', {
     'avgSupport': '@integer(2000,3000)'
   }]
 })
+
+// 竞技场数据
+Mock.mock('/api/gadminc/business/basement.json', {
+  'atavgList|15': ['@integer(10,30)'],
+  'atcountList|15': ['@integer(10,30)'],
+  'atmemberList|15': ['@integer(10,30)'],
+  'slavgList|15': ['@integer(10,30)'],
+  'slcountList|15': ['@integer(10,30)'],
+  'slmemberList|15': ['@integer(10,30)'],
+  'dateList|15': ['@date(yyyy-MM-dd)']
+})
