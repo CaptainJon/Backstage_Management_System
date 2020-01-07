@@ -62,3 +62,16 @@ Mock.mock('/api/gadminc/business/combatTeamMission.json', {
     'times|35': ['@integer(50,100)']
   }]
 })
+
+// 基地设施数据
+Mock.mock('/api/gadminc/business/basement.json', {
+  'baseBuilding|5': [{
+    'level|+1': 0,
+    'avgCentral': '@integer(2000,3000)',
+    'avgDormitory': '@integer(2000,3000)',
+    'avgElectric': '@integer(2000,3000)',
+    'avgEngine': '@integer(2000,3000)',
+    'avgResearch': '@integer(2000,3000)',
+    'avgSupport': '@integer(2000,3000)'
+  }]
+})
