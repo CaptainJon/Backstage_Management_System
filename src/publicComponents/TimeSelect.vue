@@ -13,7 +13,7 @@
         value-format="yyyy-MM-dd"
         :default-time="['00:00:00','23:59:59']"
       ></el-date-picker>
-      <el-button class="searchBtn" size="mini" @click="$emit('searchBtnClicked')">查询</el-button>
+      <el-button class="searchBtn" size="mini" @click="searchBtnClick">查询</el-button>
     </fieldset>
   </div>
 </template>
@@ -27,6 +27,9 @@ export default {
   },
   methods: {
     // 查询按钮点击
+    searchBtnClick() {
+      this.$emit('searchbtnclicked', this.selectedTime)
+    }
   }
 }
 </script>
