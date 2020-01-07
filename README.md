@@ -93,3 +93,7 @@ npm run lint
 
 [ydata对应Echarts的series选项]，更多series详细设置请见[Echarts官网](https://www.echartsjs.com/zh/)
 
+
+#### 2. TimeSelect.vue 时间选择组件
+该组件暂时没有可选API参数，但对外暴露一个[查询]按钮的点击事件[searchbtnclicked],该事件在组件内采用$emit发送，因此，只需在引用该组件的父组件内接收并重新赋值该事件即可对按钮的点击进行监控
+
