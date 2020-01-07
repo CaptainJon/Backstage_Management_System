@@ -34,7 +34,7 @@
               <el-menu-item index="/gamesystem">系统功能</el-menu-item>
               <el-menu-item index="/corearmor">核芯装备</el-menu-item>
               <el-menu-item index="/guildinfo">战队信息</el-menu-item>
-              <el-menu-item index="5">战队活动</el-menu-item>
+              <el-menu-item index="/guildevent">战队活动</el-menu-item>
               <el-menu-item index="6">基地设施</el-menu-item>
             </el-submenu>
             <el-submenu index="1">
