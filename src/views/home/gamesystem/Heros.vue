@@ -8,7 +8,7 @@
     <el-card>
       <el-table :data="herosData" border style="width: 100%" size="mini" stripe highlight-current-row>
         <el-table-column label="#" align="center" type="index" width="40"></el-table-column>
-        <el-table-column label="英雄" align="center" prop="name" width="80" :formatter="heroFormatter"></el-table-column>
+        <el-table-column label="英雄" align="center" prop="name" width="80"></el-table-column>
         <el-table-column label="平均等级" align="center" prop="avgLevel"></el-table-column>
         <el-table-column label="平均星级" align="center" prop="avgStar"></el-table-column>
         <el-table-column label="普通技能" align="center" prop="ordinarySkill"></el-table-column>
@@ -39,7 +39,6 @@ export default {
     // 获取英雄数据
     getHerosData() {
       this.$http.get('/api/gadminc/business/hero.json').then(res => {
-        console.log(res.data.herosData)
         this.herosData = res.data.herosData
       })
     }
