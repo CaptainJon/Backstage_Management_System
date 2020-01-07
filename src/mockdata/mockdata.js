@@ -31,3 +31,17 @@ Mock.mock('/api/gadminc/business/system.json', {
   'heroList|8': ['@integer(200,1500)'],
   'otherList|4': ['@integer(200,1500)']
 })
+
+// 战队信息数据
+Mock.mock('/api/gadminc/business/combatTeam.json', {
+  'guildinfo': {
+    'avgTeamLevel': '@integer(1,5)',
+    'avgTeamUserAmount': '@integer(20,50)',
+    'joinAmount': '@integer(100,300)',
+    'notJoinAmount': '@integer(2000,3000)',
+    'combatTeamLevelList|2': [{
+      'level': '@integer(1,5)',
+      'num': '@integer(2,5)'
+    }]
+  }
+})
