@@ -39,7 +39,8 @@ npm run lint
         |-- images                       图片资源  
     |-- publicComponents
         |-- EchartsTemplate.vue          <echarts-template>Echarts数据表组件，详细API见下方公共组件介绍  
-        |-- TimeSelect.Vue               <time-select>时间选择组件，详细API见下方公共组件介绍         
+        |-- TimeSelect.Vue               <time-select>时间选择组件，详细API见下方公共组件介绍
+        |-- GuildInfoPanel.vue           <guild-info-panel>公会面板组件，详细API见下方公共组件介绍           
     |-- plugins  
         |-- element.js                   ElementUI插件配置  
     |-- router  
@@ -51,6 +52,10 @@ npm run lint
             |-- battle  
             |-- gamesystem
                 |-- NewerGuide.vue        新手引导  
+                |-- CoreArmor.vue         核芯装备
+                |-- GameSystem.Vue        游戏系统
+                |-- Heros.Vue             游戏英雄
+                |-- 
             |-- gm  
             |-- querydata  
         |-- login  
@@ -95,5 +100,15 @@ npm run lint
 
 
 #### 2. TimeSelect.vue 时间选择组件
-该组件暂时没有可选API参数，但对外暴露一个[查询]按钮的点击事件[searchbtnclicked],该事件在组件内采用$emit发送，因此，只需在引用该组件的父组件内接收并重新赋值该事件即可对按钮的点击进行监控
+该组件暂时没有可选API参数，但对外暴露一个[查询]按钮的点击事件[searchbtnclicked],该事件在组件内采用$emit发送，因此，只需在引用该组件的父组件内接收该事件即可对按钮的点击进行监控
 
+
+#### 3. GuildInfoPanel.vue 公会信息面板组件
+序号 |  属性名   |     数据类型       |       默认值      |             用途 
+01.     title               String            '标题'           设置面板数据标题
+02.     panelData           Number              0              面板展示的数据
+03.     panelHeight         String            '100px'          设置面板的高度
+04.     panelIconClass      String     'el-icon-user-solid'    设置面板图标的类名
+05.     bgColor             String           '#009999'         设置面板的背景颜色
+06.     barColor            String           '#337AB7'         设置进度条颜色
+07.     barPercentage       Number              0              设置进度条的百分比值
