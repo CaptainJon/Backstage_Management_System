@@ -45,3 +45,20 @@ Mock.mock('/api/gadminc/business/combatTeam.json', {
     }]
   }
 })
+
+// 战队活动数据
+Mock.mock('/api/gadminc/business/combatTeamMission.json', {
+  'activeTimes|3': [{
+    'id|+1': 0,
+    'times|35': ['@integer(50,100)']
+  }],
+  'daList|35': ['@date(yyyy-MM-dd)'],
+  'missionTimes|8': [{
+    'id|+1': 0,
+    'times|35': ['@integer(50,100)']
+  }],
+  'repayTimes|4': [{
+    'id|+1': 0,
+    'times|35': ['@integer(50,100)']
+  }]
+})
