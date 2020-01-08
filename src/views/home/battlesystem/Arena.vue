@@ -104,10 +104,6 @@ export default {
 #arenaChart {
   height: 600px;
 }
-.arenaActive{
-  background-color: #337AB7!important;
-  color: #fff!important;
-}
 .arenaBox .el-button-group .el-button:hover{
   background-color: #e6e6e6;
   color: #333333;

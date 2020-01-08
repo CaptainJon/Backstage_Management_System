@@ -86,3 +86,19 @@ Mock.mock('/api/gadminc/business/arena.json', {
   'slmemberList|15': ['@integer(10,30)'],
   'dateList|15': ['@date(yyyy-MM-dd)']
 })
+
+// 主线剧情数据
+Mock.mock('/api/gadminc/business/mainStory.json', {
+  'avgCount': {
+    'nameList|20': ['@cname(2,4)'],
+    'numList|20': ['@integer(10,200)']
+  },
+  'playerCount': {
+    'nameList|20': ['@cname(2,4)'],
+    'numList|20': ['@integer(10,200)']
+  },
+  'storyTotal': {
+    'nameList|20': ['@cname(2,4)'],
+    'numList|20': ['@integer(10,200)']
+  }
+})

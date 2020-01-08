@@ -26,9 +26,6 @@ export default {
     return {
       // Echarts常规配置项模板
       echartsCommonOption: {
-        title: {
-          text: this.title
-        },
         toolbox: {
           show: true,
           feature: {

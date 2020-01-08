@@ -16,3 +16,7 @@ thead tr th{
   height: 600px;
   margin-top: 15px;
 }
+.arenaActive{
+  background-color: #337AB7!important;
+  color: #fff!important;
+}
