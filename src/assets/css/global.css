@@ -9,3 +9,10 @@ thead tr th{
   background-color: #2C7786!important;
   color: #fff;
 }
+.el-button-group{
+  margin-top: 15px;
+}
+.echarts600{
+  height: 600px;
+  margin-top: 15px;
+}

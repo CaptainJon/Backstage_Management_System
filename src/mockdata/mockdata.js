@@ -50,16 +50,16 @@ Mock.mock('/api/gadminc/business/combatTeam.json', {
 Mock.mock('/api/gadminc/business/combatTeamMission.json', {
   'activeTimes|3': [{
     'id|+1': 0,
-    'times|35': ['@integer(50,100)']
+    'times|25': ['@integer(50,100)']
   }],
-  'daList|35': ['@date(yyyy-MM-dd)'],
-  'missionTimes|8': [{
+  'daList|25': ['@date(yyyy-MM-dd)'],
+  'missionTimes|3': [{
     'id|+1': 0,
-    'times|35': ['@integer(50,100)']
+    'times|25': ['@integer(50,100)']
   }],
-  'repayTimes|4': [{
+  'repayTimes|3': [{
     'id|+1': 0,
-    'times|35': ['@integer(50,100)']
+    'times|25': ['@integer(50,100)']
   }]
 })
 
@@ -77,7 +77,7 @@ Mock.mock('/api/gadminc/business/basement.json', {
 })
 
 // 竞技场数据
-Mock.mock('/api/gadminc/business/basement.json', {
+Mock.mock('/api/gadminc/business/arena.json', {
   'atavgList|15': ['@integer(10,30)'],
   'atcountList|15': ['@integer(10,30)'],
   'atmemberList|15': ['@integer(10,30)'],

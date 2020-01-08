@@ -6,45 +6,46 @@
       <el-breadcrumb-item>新手引导</el-breadcrumb-item>
     </el-breadcrumb>
     <el-card>
-      <echarts-template :xdata="xdata" :ydata="ydata" yname="体验人数" xname="引导位置" title="新手引导人数分布" :ygap="60" v-if="xdata.length > 0"></echarts-template>
+      <echarts-box yname="体验人数" xname="引导位置" title="新手引导人数分布" ref="newerGuideChartRef">
+        <div id="newerGuideChart" class="echarts600"></div>
+      </echarts-box>
     </el-card>
   </div>
 </template>
 
 <script>
-import EchartsTemplate from '../../../publicComponents/EchartsTemplate'
+import echarts from 'echarts'
+import EchartsBox from '../../../publicComponents/EchartsBox'
 export default {
   data() {
     return {
-      xdata: [],
-      ydata: [
-        {
-          type: 'bar',
-          color: '#336699',
-          barMaxWidth: 40,
-          label: {
-            show: true,
-            position: 'top'
-          },
-          data: []
-        }
-      ]
+      // 表格配置
+      echartsOption: {}
     }
   },
   methods: {
-    // 新手数据请求
+    // 数据请求
     getguideData() {
       this.$http.get('/api/gadminc/business/guideData.json').then(res => {
-        this.xdata = res.data.nameList
-        this.ydata[0].data = res.data.numList
+        this.echartsOption.xAxis.data = res.data.nameList
+        this.echartsOption.series[0].data = res.data.numList
+        // 表格初始渲染
+        this.renderCharts()
       })
+    },
+    // 渲染表格
+    renderCharts() {
+      echarts.init(document.getElementById('newerGuideChart')).setOption(this.echartsOption)
     }
   },
-  created() {
+  mounted() {
+    // 储存Echarts常规配置
+    this.echartsOption = this.$refs.newerGuideChartRef.echartsCommonOption
+    // 请求并渲染数据
     this.getguideData()
   },
   components: {
-    EchartsTemplate
+    EchartsBox
   }
 }
 </script>

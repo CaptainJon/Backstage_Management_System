@@ -66,24 +66,18 @@ npm run lint
 
 ## 2.公共组件API
 
-#### 1. EchartsTemplate.vue Echarts表格
+#### 1. EchartsBox.vue Echarts表格外框
 序号 |  属性名   |   数据类型   |       默认值      |             用途 
 01.     title        String        '数据展示表格'       设置表格方框内的标题
-02.     height       String            '600px'          设置表格的高度
-03.     toolbox      Boolean            true            设置表格右上角工具栏是否可见
-04.     tooltip      Boolean            true            设置是否显示数据根据鼠标移动进行提示
-05.     xtest        Boolean            true            设置X轴名称是否可见
-06.     xname        String           'X轴数据'         设置X轴名称（注：前提需要设置xtest属性为可见状态）
-07.     xgap         Number              40             设置X轴名称距离X轴的距离
-08.     xdata        Array               []             设置X轴的数据源
-09.     ytest        Boolean            true            设置Y轴名称是否可见
-10.     yname        String           'Y轴数据'         设置Y轴名称（注：前提需要设置ytest属性为可见状态）
-11.     ygap         Number              40             设置Y轴名称距离X轴的距离
-12.     ydata        Array               []             设置Y轴的数据源
+02.     xname        String           'X轴数据'         设置X轴名称（注：前提需要设置xtest属性为可见状态）
+03.     xgap         Number              40             设置X轴名称距离X轴的距离（暂未设置）
+04.     yname        String           'Y轴数据'         设置Y轴名称（注：前提需要设置ytest属性为可见状态）
+05.     ygap         Number              40             设置Y轴名称距离X轴的距离（暂未设置）
 
-注：ydata虽然数据类型定义为数组，但内部元素是对象，一个对象代表一个类型的数据，[如有两种类型的数据展示在图表中，则需写两个对象]，以此类推，常见配置举例如下：
+注1：此模板仅为包裹Echarts的外层样式，如需要引进Echarts，需要在组件中插入一个容器（组件中已预留一个默认插槽），并在父组件中初始化容器为Echarts实例。同时，组件内储存了一个常见Echarts配置[echartsCommonOption],在每个引入该组件的父组件中，只需要在Mounted函数中通过[this.$refs.instanceRef.echartsCommonOption]拿到并赋值到父组件本地data中作为一个变量保存即可。这样可以精简每个父组件的页面代码。然后根据需求，动态修改本地存储的这个配置中的数据和其他选项就可以完成表格渲染。
 
-  ydata: [
+注2：由于子组件中存储的[echartsCommonOption]中，用于渲染Y轴数据的[series]属性默认只有一条数据，如果表格要同时渲染多条数据，需要在父组件的data中额外增加一个对象，然后在数据请求时，将这条添加的对象，插入到你本地保存的配置变量的[series]属性中即可，它是一个数组，所以可以通过series[1] = [你额外添加的对象]，因为[0]已默认存在。如果有多条，就增加多个对象，然后插入。对象模板举例如下：
+
     {
       type: 'bar',              取值 bar | line | circle, 分别对应柱状图，折线图和饼状图
       color: '#f00',            数据在图标上展示的颜色
@@ -92,11 +86,10 @@ npm run lint
         show: true,             图表折线或柱状条上是否显示数值
         position: 'top'         数值显示位置
       }
-      data: [22, 33, 44, 55]    Y轴数据源，数据类型为数组，[将请求到的数据赋值到此处即可],注意不是赋值到ydata,而是yada[0].data,[0]代表你的第一条数据
+      data: [22, 33, 44, 55]    Y轴数据源，数据类型为数组
     }
-  ]
 
-[ydata对应Echarts的series选项]，更多series详细设置请见[Echarts官网](https://www.echartsjs.com/zh/)
+[Echarts的series选项]，更多series详细设置请见[Echarts官网](https://www.echartsjs.com/zh/)
 
 
 #### 2. TimeSelect.vue 时间选择组件

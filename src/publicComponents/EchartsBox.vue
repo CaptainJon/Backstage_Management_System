@@ -1,0 +1,90 @@
+<template>
+  <div class="echartBox">
+    <div class="chartBoxTitle">{{title}}</div>
+    <!-- Echarts表格预留插槽 -->
+    <slot></slot>
+  </div>
+</template>
+
+<script>
+export default {
+  props: {
+    title: {
+      type: String,
+      default: '数据展示图表'
+    },
+    yname: {
+      type: String,
+      default: 'Y轴数据'
+    },
+    xname: {
+      type: String,
+      default: 'X轴数据'
+    }
+  },
+  data() {
+    return {
+      // Echarts常规配置项模板
+      echartsCommonOption: {
+        title: {
+          text: this.title
+        },
+        toolbox: {
+          show: true,
+          feature: {
+            magicType: { type: ['line', 'bar'] },
+            dataView: {},
+            restore: {},
+            saveAsImage: {}
+          },
+          right: 25
+        },
+        tooltip: {
+          show: true
+        },
+        xAxis: {
+          show: true,
+          name: this.xname,
+          nameLocation: 'center',
+          nameGap: 40,
+          type: 'category',
+          nameTextStyle: {
+            fontWeight: 'bold'
+          },
+          data: []
+        },
+        yAxis: {
+          show: true,
+          name: this.yname,
+          nameLocation: 'center',
+          nameGap: 60
+        },
+        series: [{
+          type: 'bar',
+          color: '#7C6354',
+          name: '',
+          barMaxWidth: 40,
+          label: {
+            show: true,
+            position: 'top'
+          },
+          data: []
+        }]
+      }
+    }
+  }
+}
+</script>
+
+<style>
+.echartBox {
+  border: 1px solid #cedeed;
+  padding: 15px;
+  margin: 15px 0;
+}
+.echartBox .chartBoxTitle {
+  padding-bottom: 15px;
+  font-size: 12px;
+  border-bottom: 1px solid #e5e5e5;
+}
+</style>
