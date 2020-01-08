@@ -44,7 +44,7 @@
               </template>
               <el-menu-item index="/arena">竞技场</el-menu-item>
               <el-menu-item index="/mainstory">主线剧情</el-menu-item>
-              <el-menu-item index="2">天启大战</el-menu-item>
+              <el-menu-item index="/apocalypse">天启大战</el-menu-item>
               <el-menu-item index="3">虚空秘境</el-menu-item>
               <el-menu-item index="4">时空裂隙</el-menu-item>
             </el-submenu>
