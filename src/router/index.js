@@ -29,7 +29,12 @@ const routes = [
       { path: '/basebuilding', component: () => import(/* webpackChunkName: "gamesystem" */ '../views/home/gamesystem/BaseBuilding.vue') },
       { path: '/arena', component: () => import(/* webpackChunkName: "battlesystem" */ '../views/home/battlesystem/Arena.vue') },
       { path: '/mainstory', component: () => import(/* webpackChunkName: "battlesystem" */ '../views/home/battlesystem/MainStory.vue') },
-      { path: '/apocalypse', component: () => import(/* webpackChunkName: "battlesystem" */ '../views/home/battlesystem/Apocalypse.vue') }
+      { path: '/apocalypse', component: () => import(/* webpackChunkName: "battlesystem" */ '../views/home/battlesystem/Apocalypse.vue') },
+      { path: '/hardcore', component: () => import(/* webpackChunkName: "battlesystem" */ '../views/home/battlesystem/HardCore.vue') },
+      { path: '/spacerift', component: () => import(/* webpackChunkName: "battlesystem" */ '../views/home/battlesystem/Spacerift.vue') },
+      { path: '/gamestore', component: () => import(/* webpackChunkName: "economy" */ '../views/home/economy/GameStore.vue') },
+      { path: '/coins', component: () => import(/* webpackChunkName: "economy" */ '../views/home/economy/Coins.vue') },
+      { path: '/diamonds', component: () => import(/* webpackChunkName: "economy" */ '../views/home/economy/Diamonds.vue') }
     ]
   }
 ]

@@ -102,3 +102,40 @@ Mock.mock('/api/gadminc/business/mainStory.json', {
     'numList|20': ['@integer(10,200)']
   }
 })
+
+// 天启大战数据
+Mock.mock('/api/gadminc/business/apocalypse.json', {
+  'playerCount': {
+    'nameList|20': ['@cname(2,4)'],
+    'numList|20': ['@integer(10,200)']
+  },
+  'storyTotal': {
+    'nameList|20': ['@cname(2,4)'],
+    'numList|20': ['@integer(10,200)']
+  }
+})
+
+// 虚空秘境数据
+Mock.mock('/api/gadminc/business/resStage.json', {
+  'playerCount': {
+    'nameList|20': ['@cname(2,4)'],
+    'numList|20': ['@integer(10,200)']
+  },
+  'storyTotal': {
+    'nameList|20': ['@cname(2,4)'],
+    'numList|20': ['@integer(10,200)']
+  }
+})
+
+// 时空裂隙数据
+Mock.mock('/api/gadminc/business/spaceTime.json', {
+  'playerCount': {
+    'nameList|6': ['@cname(2,4)'],
+    'numList|6': ['@integer(10,200)']
+  },
+  'storyTotal': {
+    'nameList|6': ['@cname(2,4)'],
+    'numList|6': ['@integer(10,200)'],
+    'finishList|6': ['@integer(10,200)']
+  }
+})

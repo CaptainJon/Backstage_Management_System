@@ -29,33 +29,33 @@
                 <i class="el-icon-cpu"></i>
                 <span>游戏系统</span>
               </template>
-              <el-menu-item index="/newerguide">新手引导</el-menu-item>
-              <el-menu-item index="/heros">游戏英雄</el-menu-item>
-              <el-menu-item index="/gamesystem">系统功能</el-menu-item>
-              <el-menu-item index="/corearmor">核芯装备</el-menu-item>
-              <el-menu-item index="/guildinfo">战队信息</el-menu-item>
-              <el-menu-item index="/guildevent">战队活动</el-menu-item>
-              <el-menu-item index="/basebuilding">基地设施</el-menu-item>
+              <el-menu-item index="newerguide">新手引导</el-menu-item>
+              <el-menu-item index="heros">游戏英雄</el-menu-item>
+              <el-menu-item index="gamesystem">系统功能</el-menu-item>
+              <el-menu-item index="corearmor">核芯装备</el-menu-item>
+              <el-menu-item index="guildinfo">战队信息</el-menu-item>
+              <el-menu-item index="guildevent">战队活动</el-menu-item>
+              <el-menu-item index="basebuilding">基地设施</el-menu-item>
             </el-submenu>
             <el-submenu index="1">
               <template slot="title">
                 <i class="el-icon-coordinate"></i>
                 <span>战斗系统</span>
               </template>
-              <el-menu-item index="/arena">竞技场</el-menu-item>
-              <el-menu-item index="/mainstory">主线剧情</el-menu-item>
-              <el-menu-item index="/apocalypse">天启大战</el-menu-item>
-              <el-menu-item index="3">虚空秘境</el-menu-item>
-              <el-menu-item index="4">时空裂隙</el-menu-item>
+              <el-menu-item index="arena">竞技场</el-menu-item>
+              <el-menu-item index="mainstory">主线剧情</el-menu-item>
+              <el-menu-item index="apocalypse">天启大战</el-menu-item>
+              <el-menu-item index="hardcore">虚空秘境</el-menu-item>
+              <el-menu-item index="spacerift">时空裂隙</el-menu-item>
             </el-submenu>
             <el-submenu index="2">
               <template slot="title">
                 <i class="el-icon-s-goods"></i>
                 <span>经济系统</span>
               </template>
-              <el-menu-item index="0">游戏商店</el-menu-item>
-              <el-menu-item index="1">金币系统</el-menu-item>
-              <el-menu-item index="2">晶体钻石</el-menu-item>
+              <el-menu-item index="gamestore">游戏商店</el-menu-item>
+              <el-menu-item index="coins">金币系统</el-menu-item>
+              <el-menu-item index="diamonds">晶体钻石</el-menu-item>
             </el-submenu>
             <el-submenu index="3">
               <template slot="title">

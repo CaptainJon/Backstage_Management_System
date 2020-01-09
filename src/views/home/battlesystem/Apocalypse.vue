@@ -13,7 +13,7 @@
         <el-button size="small" :class="{arenaActive: activeButton === '0'}" @click="activeButton = '0'">总挑战次数</el-button>
         <el-button size="small" :class="{arenaActive: activeButton === '1'}" @click="activeButton = '1'">总挑战人数</el-button>
       </el-button-group>
-      <echarts-box ref="apocalypseChartRef" xname="据点战层" yname="挑战数据">
+      <echarts-box ref="apocalypseChartRef" xname="据点战层" yname="挑战数据" :title="title">
         <div id="apocalypseChart" class="echarts600"></div>
       </echarts-box>
     </el-card>
@@ -21,21 +21,43 @@
 </template>
 
 <script>
+import echarts from 'echarts'
 import TimeSelect from '../../../publicComponents/TimeSelect'
 import EchartsBox from '../../../publicComponents/EchartsBox'
 export default {
   data() {
     return {
       activeButton: '0',
-      echartsOption: {}
+      echartsOption: {},
+      title: '总挑战次数'
     }
   },
   methods: {
     // 查询点击
     searchClicked() {
-      console.log(1)
-    }
+      this.getApocalypseData()
+    },
     // 数据获取
+    getApocalypseData() {
+      this.$http.get('/api/gadminc/business/apocalypse.json').then(res => {
+        // X轴数据赋值
+        this.echartsOption.xAxis.data = res.data.playerCount.nameList
+        // Y轴赋值
+        if (this.activeButton === '0') {
+          this.title = '总挑战次数'
+          this.echartsOption.series[0].data = res.data.storyTotal.numList
+        } else {
+          this.title = '总挑战人数'
+          this.echartsOption.series[0].data = res.data.playerCount.numList
+        }
+        // 渲染数据
+        this.renderCharts()
+      })
+    },
+    // 表格渲染
+    renderCharts() {
+      echarts.init(document.getElementById('apocalypseChart')).setOption(this.echartsOption)
+    }
   },
   mounted() {
     // 储存Echarts配置数据
