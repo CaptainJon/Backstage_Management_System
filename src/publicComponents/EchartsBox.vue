@@ -24,7 +24,7 @@ export default {
   },
   data() {
     return {
-      // Echarts常规配置项模板
+      // Echarts常规柱状/折线图配置项模板
       echartsCommonOption: {
         toolbox: {
           show: true,
@@ -67,6 +67,18 @@ export default {
           },
           data: []
         }]
+      },
+      // Echarts常规饼状图配置项模板
+      echartsPieOption: {
+        toolbox: {
+          feature: {
+            dataView: { readOnly: false },
+            saveAsImage: {}
+          },
+          right: 25
+        },
+        tooltip: {},
+        series: []
       }
     }
   }

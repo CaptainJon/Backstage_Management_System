@@ -139,3 +139,117 @@ Mock.mock('/api/gadminc/business/spaceTime.json', {
     'finishList|6': ['@integer(10,200)']
   }
 })
+
+// 游戏商店数据
+Mock.mock('/api/gadminc/business/shopBuyItem.json', {
+  'arenaTrain': {
+    'nameList|7': ['@cname(2,4)'],
+    'numList|7': ['@integer(10,200)']
+  },
+  'ordinary': {
+    'nameList|35': ['@cname(2,4)'],
+    'numList|35': ['@integer(10,200)']
+  },
+  'sportsLadder': {
+    'nameList|7': ['@cname(2,4)'],
+    'numList|7': ['@integer(10,200)']
+  }
+})
+
+// 金币系统数据
+Mock.mock('/api/gadminc/business/coinHandle.json', {
+  'dList|15': ['@date(yyyy-MM-dd)'],
+  'numList|15': ['@integer(300,1000)'],
+  'mailReward': '@integer(30,100)',
+  'missionReward': '@integer(50,100)',
+  'activityReward': '@integer(20,100)',
+  'mainPlot': '@integer(50,100)',
+  'secretTerritory': '@integer(50,100)',
+  'shopBuy': '@integer(10,100)',
+  'heroSkill': '@integer(10,100)',
+  'weapon': '@integer(10,100)',
+  'coreUpgrade': '@integer(10,100)',
+  'coreRecast': '@integer(10,100)',
+  'shopSpent': '@integer(10,100)',
+  'dailyBox': '@integer(10,100)',
+  'dailyMission': '@integer(10,100)',
+  'achivementMission': '@integer(10,100)',
+  'mainMission': '@integer(10,100)',
+  'systemProvide': '@integer(10,100)',
+  'sportsLadder': '@integer(10,100)',
+  'arenaTrain': '@integer(10,100)',
+  'mailElse': '@integer(10,100)',
+  'sevenDayActivity': '@integer(10,100)',
+  'exchangeActivity': '@integer(10,100)'
+})
+
+// 钻石系统数据
+Mock.mock('/api/gadminc/business/diamondHandle.json', {
+  'dList|15': ['@date(yyyy-MM-dd)'],
+  'numList|15': ['@integer(300,1000)'],
+  'mailReward': '@integer(30,100)',
+  'missionReward': '@integer(50,100)',
+  'activityReward': '@integer(20,100)',
+  'mainPlot': '@integer(50,100)',
+  'secretTerritory': '@integer(50,100)',
+  'shopBuy': '@integer(10,100)',
+  'heroSkill': '@integer(10,100)',
+  'weapon': '@integer(10,100)',
+  'coreUpgrade': '@integer(10,100)',
+  'coreRecast': '@integer(10,100)',
+  'shopSpent': '@integer(10,100)',
+  'dailyBox': '@integer(10,100)',
+  'dailyMission': '@integer(10,100)',
+  'achivementMission': '@integer(10,100)',
+  'mainMission': '@integer(10,100)',
+  'systemProvide': '@integer(10,100)',
+  'sportsLadder': '@integer(10,100)',
+  'arenaTrain': '@integer(10,100)',
+  'mailElse': '@integer(10,100)',
+  'sevenDayActivity': '@integer(10,100)',
+  'exchangeActivity': '@integer(10,100)',
+  'recruitHero': '@integer(10,100)',
+  'recruitProp': '@integer(10,100)',
+  'strengthExchange': '@integer(10,100)',
+  'buyTrain': '@integer(10,100)',
+  'shopBuyCost': '@integer(10,100)'
+})
+
+// 新增用户数据
+Mock.mock('/api/gadminc/business/userIncreased.json', {
+  'loginList|25': ['@integer(10,200)'],
+  'daList|25': ['@date(yyyy-MM-dd)'],
+  'numList|25': ['@integer(10,200)'],
+  'sevenDayReg': '@integer(50,200)',
+  'threeDayReg': '@integer(50,200)',
+  'thrityDayReg': '@integer(50,200)',
+  'todayReg': '@integer(50,200)',
+  'totalReg': '@integer(50,200)'
+})
+
+// 实时在线数据
+Mock.mock('/api/gadminc/business/onlineData.json', {
+  'dateList|25': ['@date(yyyy-MM-dd)'],
+  'numList|25': ['@integer(10,200)'],
+  'avgTime': '@integer(50,200)',
+  'onlineAvgNum': '@integer(1,5)',
+  'onlineMaxNum': '@integer(50,200)',
+  'onlineNum': '@integer(50,200)'
+})
+
+// 次日留存数据
+Mock.mock('/api/gadminc/business/yesterdayLoseKeep.json', {
+  'dateList|10': ['@date(yyyy-MM-dd)'],
+  'addList|10': ['@integer(10,200)'],
+  'keepList|10': ['@integer(50,200)']
+})
+
+// 活跃用户数据
+Mock.mock('/api/gadminc/business/activeUser.json', {
+  'daList|15': ['@date(yyyy-MM-dd)'],
+  'actList|15': ['@integer(10,200)'],
+  'accumulateList|15': ['@integer(50,200)'],
+  'levelList|80': ['@integer(1,80'],
+  'loyalUserList|10': ['@integer(50,200)'],
+  'numList|80': ['@integer(50,200)']
+})

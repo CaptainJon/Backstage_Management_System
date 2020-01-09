@@ -34,7 +34,11 @@ const routes = [
       { path: '/spacerift', component: () => import(/* webpackChunkName: "battlesystem" */ '../views/home/battlesystem/Spacerift.vue') },
       { path: '/gamestore', component: () => import(/* webpackChunkName: "economy" */ '../views/home/economy/GameStore.vue') },
       { path: '/coins', component: () => import(/* webpackChunkName: "economy" */ '../views/home/economy/Coins.vue') },
-      { path: '/diamonds', component: () => import(/* webpackChunkName: "economy" */ '../views/home/economy/Diamonds.vue') }
+      { path: '/diamonds', component: () => import(/* webpackChunkName: "economy" */ '../views/home/economy/Diamonds.vue') },
+      { path: '/newplayer', component: () => import(/* webpackChunkName: "operate" */ '../views/home/operate/NewPlayer.vue') },
+      { path: '/onlinecalc', component: () => import(/* webpackChunkName: "operate" */ '../views/home/operate/OnlineCalc.vue') },
+      { path: '/activeplayer', component: () => import(/* webpackChunkName: "operate" */ '../views/home/operate/ActivePlayer.vue') },
+      { path: '/nextsaving', component: () => import(/* webpackChunkName: "operate" */ '../views/home/operate/NextSaving.vue') }
     ]
   }
 ]

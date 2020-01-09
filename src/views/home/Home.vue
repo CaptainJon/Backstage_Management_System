@@ -62,10 +62,10 @@
                 <i class="el-icon-s-data"></i>
                 <span>运营数据</span>
               </template>
-              <el-menu-item index="0">新增用户</el-menu-item>
-              <el-menu-item index="1">在线统计</el-menu-item>
-              <el-menu-item index="2">次日留存</el-menu-item>
-              <el-menu-item index="3">活跃用户</el-menu-item>
+              <el-menu-item index="newplayer">新增用户</el-menu-item>
+              <el-menu-item index="onlinecalc">在线统计</el-menu-item>
+              <el-menu-item index="nextsaving">次日留存</el-menu-item>
+              <el-menu-item index="activeplayer">活跃用户</el-menu-item>
             </el-submenu>
             <el-submenu index="4">
               <template slot="title">
