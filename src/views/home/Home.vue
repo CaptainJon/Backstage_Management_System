@@ -72,7 +72,15 @@
                 <i class="el-icon-s-tools"></i>
                 <span>GM操作</span>
               </template>
-              <el-menu-item index="0">奖励发放</el-menu-item>
+              <el-menu-item index="sendbonus">奖励发放</el-menu-item>
+            </el-submenu>
+            <el-submenu index="5">
+              <template slot="title">
+                <i class="el-icon-search"></i>
+                <span>数据查询</span>
+              </template>
+              <el-menu-item index="behavelog">行为日志</el-menu-item>
+              <el-menu-item index="playermobile">用户机型</el-menu-item>
             </el-submenu>
           </el-menu>
         </el-aside>
@@ -101,12 +109,20 @@ export default {
 .homeBox .el-header {
   background-color: #00343f;
   height: 50px !important;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
 }
 .homeBox .el-aside {
   background-color: #fff;
   width: 170px !important;
   border-right: 1px solid #ddd;
   transition: all 0.5s;
+  position: fixed;
+  top: 50px;
+  left: 0;
+  bottom: 0;
 }
 .homeBox .el-aside .el-menu {
   width: 169px !important;
@@ -116,6 +132,8 @@ export default {
 .el-menu .el-submenu .el-menu-item {
   height: 35px;
   line-height: 35px;
+  box-sizing: border-box;
+  min-width: 0;
   border-bottom: none !important;
 }
 .homeBox .el-aside .el-menu li {
@@ -134,6 +152,11 @@ export default {
 }
 .homeBox .el-main {
   background-color: #eaedf1;
+  position: fixed;
+  left: 170px;
+  top: 50px;
+  right: 0;
+  bottom: 0;
 }
 .homeBox .el-header .headerTitle {
   color: #fff;

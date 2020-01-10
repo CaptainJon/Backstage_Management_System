@@ -246,10 +246,24 @@ Mock.mock('/api/gadminc/business/yesterdayLoseKeep.json', {
 
 // 活跃用户数据
 Mock.mock('/api/gadminc/business/activeUser.json', {
-  'daList|15': ['@date(yyyy-MM-dd)'],
-  'actList|15': ['@integer(10,200)'],
-  'accumulateList|15': ['@integer(50,200)'],
-  'levelList|80': ['@integer(1,80'],
-  'loyalUserList|10': ['@integer(50,200)'],
-  'numList|80': ['@integer(50,200)']
+  'daList|30': ['@date(yyyy-MM-dd)'],
+  'actList|30': ['@integer(10,200)'],
+  'accumulateList|30': ['@integer(50,200)'],
+  'levelList|80': ['@integer(1,80)'],
+  'loyalUserList|30': ['@integer(50,200)'],
+  'numList|80': ['@integer(50,200)'],
+  'actOne': '@integer(50,200)',
+  'actSeven': '@integer(50,200)',
+  'actThirty': '@integer(50,200)'
+})
+
+// GM操作服务器列表数据
+Mock.mock('/api/gadminc/server/listServers.json', {
+  'serverList': [{
+    'id': 1,
+    'serverId': 1,
+    'name': '106.52.104.153',
+    'serviceURLPrefix': 'http://106.52.104.153:8280',
+    'description': '外网'
+  }]
 })

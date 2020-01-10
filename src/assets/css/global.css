@@ -20,6 +20,10 @@ thead tr th{
   height: 500px;
   margin-top: 15px;
 }
+.echarts350{
+  height: 350px;
+  margin-top: 15px;
+}
 .echarts197{
   height: 197px;
   margin-top: 15px;
@@ -27,4 +31,7 @@ thead tr th{
 .arenaActive{
   background-color: #337AB7!important;
   color: #fff!important;
+}
+.el-radio-group{
+  margin-bottom: 20px;
 }
