@@ -8,14 +8,27 @@
       <!-- 登录表单 -->
       <el-form :model="loginForm" :rules="loginFormRule" ref="loginFormRef">
         <el-form-item prop="name">
-          <el-input clearable suffix-icon="el-icon-user" placeholder="请输入账户名" v-model="loginForm.name" size="medium"></el-input>
+          <el-input
+            clearable
+            placeholder="请输入账户名"
+            size="medium"
+            suffix-icon="el-icon-user"
+            v-model="loginForm.name"
+          ></el-input>
         </el-form-item>
         <el-form-item prop="password">
-          <el-input show-password clearable suffix-icon="el-icon-lock" placeholder="请输入密码" v-model="loginForm.password" size="medium"></el-input>
+          <el-input
+            clearable
+            placeholder="请输入密码"
+            show-password
+            size="medium"
+            suffix-icon="el-icon-lock"
+            v-model="loginForm.password"
+          ></el-input>
         </el-form-item>
       </el-form>
-      <el-button type="primary" size="medium" @click="login">登录</el-button>
-      <div class="tips" @click="showPassTips">忘记密码?</div>
+      <el-button @click="login" size="medium" type="primary">登录</el-button>
+      <div @click="showPassTips" class="tips">忘记密码?</div>
     </div>
   </div>
 </template>
@@ -27,17 +40,13 @@ export default {
     return {
       // 登录表单数据
       loginForm: {
-        name: '',
-        password: ''
+        name: 'admin',
+        password: '123456'
       },
       // 登录表单验证规则
       loginFormRule: {
-        name: [
-          { required: true, message: '账户名不能为空', trigger: 'blur' }
-        ],
-        password: [
-          { required: true, message: '密码不能为空', trigger: 'blur' }
-        ]
+        name: [{ required: true, message: '账户名不能为空', trigger: 'blur' }],
+        password: [{ required: true, message: '密码不能为空', trigger: 'blur' }]
       }
     }
   },
@@ -49,21 +58,22 @@ export default {
     // 登录按钮
     login() {
       // 开启表单格式验证
-      this.$refs.loginFormRef.validate(valid => {
+      this.$refs.loginFormRef.validate(async valid => {
         if (valid) {
-          // 格式验证成功
-          this.$http.post('/api/gadmin/loginWithVerificationCodeServlet', this.loginForm).then(res => {
-            var aaa = document.cookie
-            console.log(aaa)
-            console.log(11)
-            // this.$message.success('登录成功')
-            // this.$router.push('/home')
-          }).catch(() => {
-            this.$message.error('账户名或密码错误')
+          const res = await this.$http.get('/api/gadmin/loginWithVerificationCodeServlet2', {
+            params: {
+              name: this.loginForm.name,
+              password: this.loginForm.password
+            }
           })
-        } else {
-          // 格式验证失败
-          return false
+          if (res.data.includes('token')) {
+            const tokenVal = res.data.split(':')
+            window.sessionStorage.setItem('token', tokenVal[1])
+            this.$message.success('登录成功')
+            this.$router.push('/home')
+          } else {
+            this.$message.error('密码错误')
+          }
         }
       })
     }
@@ -72,36 +82,36 @@ export default {
 </script>
 
 <style>
-.loginbg{
+.loginbg {
   width: 100%;
   height: 100%;
   background: url('../../assets/images/login_bg.png') no-repeat;
   background-size: cover;
 }
-.loginbg .loginbox{
+.loginbg .loginbox {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%,-50%)
+  transform: translate(-50%, -50%);
 }
-.loginbg .loginbox .logo{
+.loginbg .loginbox .logo {
   width: 400px;
   height: 78px;
   background: url('../../assets/images/logo.png') no-repeat;
   padding-bottom: 15px;
 }
-.loginbg .loginbox .title{
+.loginbg .loginbox .title {
   color: #fff;
   letter-spacing: 3px;
   text-align: center;
 }
-.loginbg .loginbox .el-form{
+.loginbg .loginbox .el-form {
   margin-top: 15px;
 }
-.loginbg .loginbox .el-button{
+.loginbg .loginbox .el-button {
   width: 100%;
 }
-.loginbg .loginbox .tips{
+.loginbg .loginbox .tips {
   color: #5167a3;
   margin-top: 15px;
   cursor: pointer;

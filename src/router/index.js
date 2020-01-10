@@ -52,4 +52,20 @@ const router = new VueRouter({
   routes
 })
 
+// 挂载路由导航守卫
+router.beforeEach((to, from, next) => {
+  // 访问登录页则跳转登录页
+  if (to.path === '/login') {
+    next()
+  }
+  // 获取token
+  const tokenStr = window.sessionStorage.getItem('token')
+  // 判断是否拥有token
+  if (!tokenStr) {
+    next('/login') // 没有跳转登录页
+  } else {
+    next() // 有则放行
+  }
+})
+
 export default router
