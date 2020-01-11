@@ -40,8 +40,8 @@ export default {
     return {
       // 登录表单数据
       loginForm: {
-        name: 'admin',
-        password: '123456'
+        name: 'neil',
+        password: 'youmisky'
       },
       // 登录表单验证规则
       loginFormRule: {
@@ -66,9 +66,11 @@ export default {
               password: this.loginForm.password
             }
           })
+          // 处理后端返回的token数据
           if (res.data.includes('token')) {
             const tokenVal = res.data.split(':')
-            window.sessionStorage.setItem('token', tokenVal[1])
+            // 因后端在每次请求时都主动往浏览器cookie中获取token进行验证，实际上前端也进行了验证，因此token要储存在cookie中，否则后端会返回一个不存在的页面跳转指令，即页面不发生变化
+            document.cookie = 'gadmin-user' + '=' + tokenVal[1]
             this.$message.success('登录成功')
             this.$router.push('/home')
           } else {
