@@ -10,9 +10,9 @@
       <time-select @searchbtnclicked="searchClicked"></time-select>
       <!-- 难度按钮组 -->
       <el-button-group>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '普通'}" @click="diffActiveButton = '普通'">普通</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '困难'}" @click="diffActiveButton = '困难'">困难</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '天启'}" @click="diffActiveButton = '天启'">天启</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '0'}" @click="difficulty = '0'">普通</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '1'}" @click="difficulty = '1'">困难</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '2'}" @click="difficulty = '2'">天启</el-button>
       </el-button-group>
       <!-- 数据分类按钮组 -->
       <el-button-group class="dataBtnGroup">
@@ -35,7 +35,6 @@ import EchartsBox from '../../../publicComponents/EchartsBox'
 export default {
   data() {
     return {
-      diffActiveButton: '普通',
       activeButton: 'total',
       title: '总挑战次数—普通',
       // 表格配置
@@ -54,19 +53,24 @@ export default {
     },
     // 获取数据
     getMainStoryData(selectedTime) {
-      this.$http.get('/api/gadminc/business/mainStory.json').then(res => {
-        console.log(res)
+      this.$http.get('/api/gadminc/business/mainStory.json', {
+        params: {
+          startTime: selectedTime[0],
+          endTime: selectedTime[1],
+          degree: this.difficulty
+        }
+      }).then(res => {
         // X轴数据赋值,由于关卡数据一致，因此取任意数据的nameList皆可
         this.echartsOption.xAxis.data = res.data.avgCount.nameList
         // Y轴数据赋值
         if (this.activeButton === 'total') { // 总挑战次数
-          this.title = '总挑战次数—' + this.diffActiveButton
+          this.title = '总挑战次数—' + this.difficultyTitle
           this.echartsOption.series[0].data = res.data.storyTotal.numList
         } else if (this.activeButton === 'avg') { // 人均挑战次数
-          this.title = '人均挑战次数—' + this.diffActiveButton
+          this.title = '人均挑战次数—' + this.difficultyTitle
           this.echartsOption.series[0].data = res.data.avgCount.numList
         } else { // 总挑战人数
-          this.title = '总挑战人数—' + this.diffActiveButton
+          this.title = '总挑战人数—' + this.difficultyTitle
           this.echartsOption.series[0].data = res.data.playerCount.numList
         }
         // 渲染数据
@@ -81,6 +85,19 @@ export default {
   components: {
     TimeSelect,
     EchartsBox
+  },
+  computed: {
+    // 根据难度动态显示的表头
+    difficultyTitle() {
+      switch (this.difficulty) {
+        case '0':
+          return '普通'
+        case '1':
+          return '困难'
+        default:
+          return '天启'
+      }
+    }
   }
 }
 </script>
