@@ -35,7 +35,7 @@ export default {
       activeButton: '0',
       // 表格第二条数据模板
       secondChartData: {
-        type: 'bar',
+        type: 'line',
         color: '#45584A',
         name: '',
         barMaxWidth: 40,
@@ -56,11 +56,17 @@ export default {
   methods: {
     // 查询按钮点击
     searchClicked(time) {
-      this.getArenaData()
+      this.getArenaData(time)
     },
     // 获取页面数据
-    getArenaData() {
-      this.$http.get('/api/gadminc/business/arena.json').then(res => {
+    getArenaData(time) {
+      this.$http.get('/api/gadminc/business/arena.json', {
+        params: {
+          startTime: time[0],
+          endTime: time[1]
+        }
+      }).then(res => {
+        console.log(res)
         // X轴数据赋值
         this.echartsOption.xAxis.data = res.data.dateList
         // 添加并重置第二条series数据到配置模板
@@ -68,6 +74,8 @@ export default {
         // 设置每条数据的显示名称
         this.echartsOption.series[0].name = '试炼挑战'
         this.echartsOption.series[1].name = '天梯挑战'
+        // 重置第一条数据的数据类型为折线图
+        this.echartsOption.series[0].type = 'line'
         // 按钮触发判断
         if (this.activeButton === '0') { // 总挑战次数
           this.title = '天梯/试炼总挑战次数'
@@ -94,8 +102,6 @@ export default {
   mounted() {
     // 子组件渲染完后，存储子组件的Echarts配置
     this.echartsOption = this.$refs.arenaEchartsRef.echartsCommonOption
-    // 初步渲染表格
-    this.renderChart()
   }
 }
 </script>
