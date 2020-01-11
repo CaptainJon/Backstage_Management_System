@@ -6,7 +6,7 @@
       <el-breadcrumb-item>游戏英雄</el-breadcrumb-item>
     </el-breadcrumb>
     <el-card>
-      <el-table :data="herosData" border style="width: 100%" size="mini" stripe highlight-current-row>
+      <el-table :data="herosData" border style="width: 100%" size="mini" stripe highlight-current-row v-loading='loading'>
         <el-table-column label="#" align="center" type="index" width="40"></el-table-column>
         <el-table-column label="英雄" align="center" prop="name" width="80"></el-table-column>
         <el-table-column label="平均等级" align="center" prop="avgLevel"></el-table-column>
@@ -29,7 +29,8 @@
 export default {
   data() {
     return {
-      herosData: []
+      herosData: [],
+      loading: true
     }
   },
   created() {
@@ -39,7 +40,8 @@ export default {
     // 获取英雄数据
     getHerosData() {
       this.$http.get('/api/gadminc/business/hero.json').then(res => {
-        this.herosData = res.data.herosData
+        this.loading = false
+        this.herosData = res.data
       })
     }
   }
@@ -47,8 +49,4 @@ export default {
 </script>
 
 <style>
-.heroname{
-  color: #FF008D!important;
-  font-weight: bold;
-}
 </style>
