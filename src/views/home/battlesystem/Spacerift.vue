@@ -10,16 +10,16 @@
       <time-select @searchbtnclicked="searchClicked"></time-select>
       <!-- 难度按钮组 -->
       <el-button-group>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '1'}" @click="diffActiveButton = '1'">裂隙·I</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '2'}" @click="diffActiveButton = '2'">裂隙·II</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '3'}" @click="diffActiveButton = '3'">裂隙·III</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '4'}" @click="diffActiveButton = '4'">裂隙·IV</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '5'}" @click="diffActiveButton = '5'">裂隙·V</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '6'}" @click="diffActiveButton = '6'">裂隙·VI</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '7'}" @click="diffActiveButton = '7'">裂隙·VII</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '8'}" @click="diffActiveButton = '8'">裂隙·VIII</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '9'}" @click="diffActiveButton = '9'">裂隙·IX</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '10'}" @click="diffActiveButton = '10'">裂隙·X</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '1'}" @click="difficulty = '1'">裂隙·I</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '2'}" @click="difficulty = '2'">裂隙·II</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '3'}" @click="difficulty = '3'">裂隙·III</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '4'}" @click="difficulty = '4'">裂隙·IV</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '5'}" @click="difficulty = '5'">裂隙·V</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '6'}" @click="difficulty = '6'">裂隙·VI</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '7'}" @click="difficulty = '7'">裂隙·VII</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '8'}" @click="difficulty = '8'">裂隙·VIII</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '9'}" @click="difficulty = '9'">裂隙·IX</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '10'}" @click="difficulty = '10'">裂隙·X</el-button>
       </el-button-group>
       <!-- 数据分类按钮组 -->
       <el-button-group class="dataBtnGroup">
@@ -41,14 +41,14 @@ import EchartsBox from '../../../publicComponents/EchartsBox'
 export default {
   data() {
     return {
-      diffActiveButton: '1',
+      difficulty: '1',
       activeButton: 'total',
       title: '裂隙·I-总挑战次数',
       echartsOption: {},
       ydata: [
         {
           type: 'bar',
-          color: '#45584A',
+          color: '#4CABCE',
           name: '',
           barMaxWidth: 40,
           label: {
@@ -59,7 +59,7 @@ export default {
         },
         {
           type: 'bar',
-          color: '#f00',
+          color: '#45584A',
           name: '',
           barMaxWidth: 40,
           label: {
@@ -73,27 +73,40 @@ export default {
   },
   methods: {
     // 查询点击
-    searchClicked() {
-      this.getSpaceriftData()
+    searchClicked(time) {
+      this.getSpaceriftData(time)
     },
     // 获取数据
-    getSpaceriftData() {
-      this.$http.get('/api/gadminc/business/spaceTime.json').then(res => {
+    getSpaceriftData(time) {
+      this.$http.get('/api/gadminc/business/spaceTime.json', {
+        params: {
+          startTime: time[0],
+          endTime: time[1],
+          degree: this.difficulty
+        }
+      }).then(res => {
         console.log(res)
         // X轴数据赋值
         this.echartsOption.xAxis.data = res.data.playerCount.nameList
         // Y轴数据赋值
         if (this.activeButton === 'total') {
           this.title = this.chartTitle + '-总挑战次数'
+          // 重置数据项
+          this.echartsOption.series = []
+          // 重新赋值模板
           this.echartsOption.series = this.ydata
+          // 重新赋值
           this.echartsOption.series[0].name = '总挑战次数'
-          this.echartsOption.series[0].data = res.data.storyTotal.numList
-          this.echartsOption.series[1].name = '成功次数'
-          this.echartsOption.series[1].data = res.data.storyTotal.finishList
+          // this.echartsOption.series[0].data = res.data.storyTotal.numList
+          // this.echartsOption.series[1].name = '成功次数'
+          // this.echartsOption.series[1].data = res.data.storyTotal.finishList
         } else {
           this.title = this.chartTitle + '-总挑战人数'
+          // 重置数据项
           this.echartsOption.series = []
+          // 重新赋值模板
           this.echartsOption.series[0] = this.ydata[0]
+          // 重新赋值
           this.echartsOption.series[0].data = res.data.playerCount.numList
         }
         // 渲染表格
@@ -101,6 +114,7 @@ export default {
       })
     },
     renderCharts() {
+      echarts.init(document.getElementById('spaceriftChart')).clear()
       echarts.init(document.getElementById('spaceriftChart')).setOption(this.echartsOption)
     }
   },
@@ -115,7 +129,7 @@ export default {
   computed: {
     // 裂隙层数
     chartTitle(diff) {
-      diff = this.diffActiveButton
+      diff = this.difficulty
       switch (diff) {
         case '1' :
           diff = '裂隙·I'

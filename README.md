@@ -105,3 +105,5 @@ npm run lint
 05.     bgColor             String           '#009999'         设置面板的背景颜色
 06.     barColor            String           '#337AB7'         设置进度条颜色
 07.     barPercentage       Number              0              设置进度条的百分比值
+
+备用色盘：['#336699', '#45584A', '#D06D6A', '#006699', '#4CABCE', '#8CB8BE', '#DDA38F']
