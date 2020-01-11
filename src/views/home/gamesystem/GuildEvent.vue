@@ -9,16 +9,16 @@
       <!-- 时间选择 -->
       <time-select @searchbtnclicked="searchClicked"></time-select>
       <!-- 战队任务 -->
-      <echarts-box xname="日期区间" yname="获取次数" ref="guildQuestChartRef">
-        <div id="guildQuestChart" class="echarts600"></div>
+      <echarts-box ref="guildQuestChartRef" title="战队任务" xname="日期区间" yname="获取次数">
+        <div class="echarts600" id="guildQuestChart"></div>
       </echarts-box>
       <!-- 积分礼包 -->
-      <echarts-box xname="日期区间" yname="获取次数">
-        <div id="potinsBundleChart" class="echarts600"></div>
+      <echarts-box ref="potinsBundleChartRef" title="积分礼包" xname="日期区间" yname="获取次数">
+        <div class="echarts600" id="potinsBundleChart"></div>
       </echarts-box>
       <!-- 回馈礼包 -->
-      <echarts-box xname="日期区间" yname="获取次数">
-        <div id="paybackBundleChart" class="echarts600"></div>
+      <echarts-box ref="paybackBundleChartRef" title="回馈礼包" xname="日期区间" yname="获取次数">
+        <div class="echarts600" id="paybackBundleChart"></div>
       </echarts-box>
     </el-card>
   </div>
@@ -38,113 +38,13 @@ export default {
       // 战队任务表格配置
       paybackBundleChartOption: {},
       // 战队任务数据
-      guildQuestData: [
-        {
-          type: 'bar',
-          color: '#CB534F',
-          name: '',
-          barMaxWidth: 40,
-          label: {
-            show: true,
-            position: 'top'
-          },
-          data: []
-        },
-        {
-          type: 'bar',
-          color: '#4C5F6C',
-          name: '',
-          barMaxWidth: 40,
-          label: {
-            show: true,
-            position: 'top'
-          },
-          data: []
-        },
-        {
-          type: 'bar',
-          color: '#6BA6AE',
-          name: '',
-          barMaxWidth: 40,
-          label: {
-            show: true,
-            position: 'top'
-          },
-          data: []
-        }
-      ],
+      guildQuestData: [],
       // 积分礼包数据
-      pointsBundleData: [
-        {
-          type: 'bar',
-          color: '#CB534F',
-          name: '',
-          barMaxWidth: 40,
-          label: {
-            show: true,
-            position: 'top'
-          },
-          data: []
-        },
-        {
-          type: 'bar',
-          color: '#4C5F6C',
-          name: '',
-          barMaxWidth: 40,
-          label: {
-            show: true,
-            position: 'top'
-          },
-          data: []
-        },
-        {
-          type: 'bar',
-          color: '#6BA6AE',
-          name: '',
-          barMaxWidth: 40,
-          label: {
-            show: true,
-            position: 'top'
-          },
-          data: []
-        }
-      ],
+      pointsBundleData: [],
       // 回馈礼包数据
-      paybackBundleData: [
-        {
-          type: 'bar',
-          color: '#CB534F',
-          name: '',
-          barMaxWidth: 40,
-          label: {
-            show: true,
-            position: 'top'
-          },
-          data: []
-        },
-        {
-          type: 'bar',
-          color: '#4C5F6C',
-          name: '',
-          barMaxWidth: 40,
-          label: {
-            show: true,
-            position: 'top'
-          },
-          data: []
-        },
-        {
-          type: 'bar',
-          color: '#6BA6AE',
-          name: '',
-          barMaxWidth: 40,
-          label: {
-            show: true,
-            position: 'top'
-          },
-          data: []
-        }
-      ]
+      paybackBundleData: [],
+      // 颜色盘
+      colorArr: ['#2F4554', '#D06D6A', '#006699', '#4CABCE', '#8CB8BE', '#DDA38F']
     }
   },
   components: {
@@ -159,52 +59,87 @@ export default {
     },
     // 页面数据获取
     getGuildEventData(selectedTime) {
-      this.$http.get('/api/gadminc/business/combatTeamMission.json', {
-        params: {
-          startTime: selectedTime[0],
-          endTime: selectedTime[1]
-        }
-      }).then(res => {
-        console.log(res)
-        // X轴数据赋值
-        this.guildQuestChartOption.xAxis.data = res.data.daList
-        this.pointsBundleChartOption.xAxis.data = res.data.daList
-        this.paybackBundleChartOption.xAxis.data = res.data.daList
-        // Y轴数据赋值
-        // 战队任务
-        this.guildQuestData[0].data = res.data.missionTimes[0].times
-        this.guildQuestData[1].data = res.data.missionTimes[1].times
-        this.guildQuestData[2].data = res.data.missionTimes[2].times
-        // 积分礼包
-        this.pointsBundleData[0].data = res.data.activeTimes[0].times
-        this.pointsBundleData[1].data = res.data.activeTimes[1].times
-        this.pointsBundleData[2].data = res.data.activeTimes[2].times
-        // 回馈礼包
-        this.paybackBundleData[0].data = res.data.repayTimes[0].times
-        this.paybackBundleData[1].data = res.data.repayTimes[1].times
-        this.paybackBundleData[2].data = res.data.repayTimes[2].times
-        // 将赋值后的数据到配置模板
-        this.guildQuestChartOption.series = this.guildQuestData
-        this.pointsBundleChartOption.series = this.pointsBundleData
-        this.paybackBundleChartOption.series = this.paybackBundleData
-        // 获取并渲染数据
-        this.renderCharts()
-      })
+      this.$http
+        .get('/api/gadminc/business/combatTeamMission.json', {
+          params: {
+            startTime: selectedTime[0],
+            endTime: selectedTime[1]
+          }
+        })
+        .then(res => {
+          // X轴数据赋值
+          this.guildQuestChartOption.xAxis.data = res.data.daList
+          this.pointsBundleChartOption.xAxis.data = res.data.daList
+          this.paybackBundleChartOption.xAxis.data = res.data.daList
+          // Y轴数据赋值
+          // 战队任务
+          for (let i = 0; i < res.data.missionTimes.length; i++) {
+            this.guildQuestData.push({
+              type: 'line',
+              color: this.colorArr[i],
+              name: '',
+              barMaxWidth: 40,
+              label: {
+                show: true,
+                position: 'top'
+              },
+              data: res.data.missionTimes[i].times
+            })
+          }
+          // 积分礼包
+          for (let i = 0; i < res.data.activeTimes.length; i++) {
+            this.pointsBundleData.push({
+              type: 'line',
+              color: this.colorArr[i],
+              name: '',
+              barMaxWidth: 40,
+              label: {
+                show: true,
+                position: 'top'
+              },
+              data: res.data.activeTimes[i].times
+            })
+          }
+          // 回馈礼包
+          for (let i = 0; i < res.data.repayTimes.length; i++) {
+            this.paybackBundleData.push({
+              type: 'line',
+              color: this.colorArr[i],
+              name: '',
+              barMaxWidth: 40,
+              label: {
+                show: true,
+                position: 'top'
+              },
+              data: res.data.repayTimes[i].times
+            })
+          }
+          // 将赋值后的数据到配置模板
+          this.guildQuestChartOption.series = this.guildQuestData
+          this.pointsBundleChartOption.series = this.pointsBundleData
+          this.paybackBundleChartOption.series = this.paybackBundleData
+          // 获取并渲染数据
+          this.renderCharts()
+        })
     },
     // 渲染表格
     renderCharts() {
-      echarts.init(document.getElementById('guildQuestChart')).setOption(this.guildQuestChartOption)
-      echarts.init(document.getElementById('potinsBundleChart')).setOption(this.pointsBundleChartOption)
-      echarts.init(document.getElementById('paybackBundleChart')).setOption(this.paybackBundleChartOption)
+      echarts
+        .init(document.getElementById('guildQuestChart'))
+        .setOption(this.guildQuestChartOption)
+      echarts
+        .init(document.getElementById('potinsBundleChart'))
+        .setOption(this.pointsBundleChartOption)
+      echarts
+        .init(document.getElementById('paybackBundleChart'))
+        .setOption(this.paybackBundleChartOption)
     }
   },
   mounted() {
     // 储存子组件Echarts常规配置
     this.guildQuestChartOption = this.$refs.guildQuestChartRef.echartsCommonOption
-    this.pointsBundleChartOption = this.$refs.guildQuestChartRef.echartsCommonOption
-    this.paybackBundleChartOption = this.$refs.guildQuestChartRef.echartsCommonOption
-    // 初始渲染表格
-    this.renderCharts()
+    this.pointsBundleChartOption = this.$refs.potinsBundleChartRef.echartsCommonOption
+    this.paybackBundleChartOption = this.$refs.paybackBundleChartRef.echartsCommonOption
   }
 }
 </script>
