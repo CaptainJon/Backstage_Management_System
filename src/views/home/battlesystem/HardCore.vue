@@ -10,9 +10,9 @@
       <time-select @searchbtnclicked="searchClicked"></time-select>
       <!-- 难度按钮组 -->
       <el-button-group>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '原初秘境'}" @click="diffActiveButton = '原初秘境'">原初秘境</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '零镜秘境'}" @click="diffActiveButton = '零镜秘境'">零镜秘境</el-button>
-        <el-button size="small" :class="{arenaActive: diffActiveButton === '矩阵秘境'}" @click="diffActiveButton = '矩阵秘境'">矩阵秘境</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '1001'}" @click="difficulty = '1001'">原初秘境</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '1002'}" @click="difficulty = '1002'">零镜秘境</el-button>
+        <el-button size="small" :class="{arenaActive: difficulty === '1003'}" @click="difficulty = '1003'">矩阵秘境</el-button>
       </el-button-group>
       <!-- 数据分类按钮组 -->
       <el-button-group class="dataBtnGroup">
@@ -34,7 +34,7 @@ import EchartsBox from '../../../publicComponents/EchartsBox'
 export default {
   data() {
     return {
-      diffActiveButton: '原初秘境',
+      difficulty: '1001',
       activeButton: 'total',
       echartsOption: {},
       title: '原初秘境-总挑战次数'
@@ -42,16 +42,22 @@ export default {
   },
   methods: {
     // 获取数据
-    getHardCoreData() {
-      this.$http.get('/api/gadminc/business/resStage.json').then(res => {
+    getHardCoreData(time) {
+      this.$http.get('/api/gadminc/business/resStage.json', {
+        params: {
+          startTime: time[0],
+          endTime: time[1],
+          degree: this.difficulty
+        }
+      }).then(res => {
         // X轴数据赋值
         this.echartsOption.xAxis.data = res.data.playerCount.nameList
         // Y轴数据赋值
         if (this.activeButton === 'total') {
-          this.title = this.diffActiveButton + '-总挑战次数'
+          this.title = this.difficultyTitle + '-总挑战次数'
           this.echartsOption.series[0].data = res.data.storyTotal.numList
         } else {
-          this.title = this.diffActiveButton + '-总挑战人数'
+          this.title = this.difficultyTitle + '-总挑战人数'
           this.echartsOption.series[0].data = res.data.playerCount.numList
         }
         // 渲染表格
@@ -63,8 +69,8 @@ export default {
       echarts.init(document.getElementById('hardcoreChart')).setOption(this.echartsOption)
     },
     // 查询点击
-    searchClicked() {
-      this.getHardCoreData()
+    searchClicked(time) {
+      this.getHardCoreData(time)
     }
   },
   mounted() {
@@ -74,6 +80,19 @@ export default {
   components: {
     TimeSelect,
     EchartsBox
+  },
+  computed: {
+    // 秘境难度动态显示标题
+    difficultyTitle() {
+      switch (this.difficulty) {
+        case '1001':
+          return '原初秘境'
+        case '1002':
+          return '零镜秘境'
+        default:
+          return '矩阵秘境'
+      }
+    }
   }
 }
 </script>
