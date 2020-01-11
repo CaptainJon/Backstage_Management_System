@@ -35,3 +35,12 @@ thead tr th{
 .el-radio-group{
   margin-bottom: 20px;
 }
+.el-dialog__header{
+  padding: 10px 20px 10px;
+}
+.el-dialog__body{
+  padding: 15px 20px;
+}
+.el-dialog__footer{
+  padding: 0px 20px 10px;
+}
