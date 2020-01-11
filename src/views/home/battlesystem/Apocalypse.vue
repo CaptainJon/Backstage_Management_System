@@ -34,12 +34,17 @@ export default {
   },
   methods: {
     // 查询点击
-    searchClicked() {
-      this.getApocalypseData()
+    searchClicked(time) {
+      this.getApocalypseData(time)
     },
     // 数据获取
-    getApocalypseData() {
-      this.$http.get('/api/gadminc/business/apocalypse.json').then(res => {
+    getApocalypseData(time) {
+      this.$http.get('/api/gadminc/business/apocalypse.json', {
+        params: {
+          startTime: time[0],
+          endTime: time[1]
+        }
+      }).then(res => {
         // X轴数据赋值
         this.echartsOption.xAxis.data = res.data.playerCount.nameList
         // Y轴赋值
