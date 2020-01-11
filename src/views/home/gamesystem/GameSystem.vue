@@ -102,9 +102,13 @@ export default {
         this.otherEchartsOption.xAxis.data = this.otherXdata
         // Y轴数据赋值
         this.missionEchartsOption.series[0].data = res.data.missionList
+        this.missionEchartsOption.series[0].color = '#336699'
         this.herosEchartsOption.series[0].data = res.data.heroList
+        this.herosEchartsOption.series[0].color = '#464F88'
         this.summonEchartsOption.series[0].data = res.data.callList
+        this.summonEchartsOption.series[0].color = '#293C55'
         this.otherEchartsOption.series[0].data = res.data.otherList
+        this.otherEchartsOption.series[0].color = '#A9334C'
         // 数据渲染
         this.renderCharts()
       })
@@ -128,8 +132,6 @@ export default {
     this.herosEchartsOption = this.$refs.herosChartRef.echartsCommonOption
     this.summonEchartsOption = this.$refs.summonChartRef.echartsCommonOption
     this.otherEchartsOption = this.$refs.otherChartsRef.echartsCommonOption
-    // 初始渲染表格
-    this.renderCharts()
   }
 }
 </script>
