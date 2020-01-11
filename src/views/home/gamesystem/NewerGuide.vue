@@ -29,6 +29,7 @@ export default {
       this.$http.get('/api/gadminc/business/guideData.json').then(res => {
         this.echartsOption.xAxis.data = res.data.nameList
         this.echartsOption.series[0].data = res.data.numList
+        this.echartsOption.series[0].color = '#336699'
         // 表格初始渲染
         this.renderCharts()
       })
