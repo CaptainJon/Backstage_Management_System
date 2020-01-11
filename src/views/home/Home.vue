@@ -13,8 +13,8 @@
             <i class="el-icon-arrow-down"></i>
             <div class="logoutArea">
               <ul>
-                <li>修改密码</li>
-                <li>退出系统</li>
+                <li @click="dialogVisible = true">修改密码</li>
+                <li @click="logout">退出系统</li>
               </ul>
             </div>
           </el-col>
@@ -90,12 +90,55 @@
         </el-main>
       </el-container>
     </el-container>
+    <!-- 修改密码对话框 -->
+    <el-dialog :visible.sync="dialogVisible" title="密码修改" width="25%">
+      <el-form :model="passform" label-width="80px" ref="form" size="small">
+        <el-form-item label="原始密码">
+          <el-input v-model="passform.oldPassword" type="password"></el-input>
+        </el-form-item>
+        <el-form-item label="最新密码">
+          <el-input v-model="passform.newPassword" type="password"></el-input>
+        </el-form-item>
+      </el-form>
+      <span class="dialog-footer" slot="footer">
+        <el-button @click="dialogVisible = false" size="small">取 消</el-button>
+        <el-button @click="confirmChangePass" size="small" type="primary">确 定</el-button>
+      </span>
+    </el-dialog>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'home'
+  name: 'home',
+  data() {
+    return {
+      dialogVisible: false,
+      passform: {
+        oldPassword: '',
+        newPassword: ''
+      }
+    }
+  },
+  methods: {
+    // 登录退出
+    logout() {
+      this.$confirm('您即将退出系统，是否继续?', '警告', { type: 'warning' })
+        .then(() => {
+          // 跳转登录页
+          this.$router.push('/login')
+          // 清除session里的token
+          window.sessionStorage.removeItem('token')
+        })
+        .catch(err => {
+          return err
+        })
+    },
+    // 修改密码确认
+    confirmChangePass() {
+      this.dialogVisible = false
+    }
+  }
 }
 </script>
 
@@ -109,20 +152,12 @@ export default {
 .homeBox .el-header {
   background-color: #00343f;
   height: 50px !important;
-  position: fixed;
-  left: 0;
-  top: 0;
-  right: 0;
 }
 .homeBox .el-aside {
   background-color: #fff;
   width: 170px !important;
   border-right: 1px solid #ddd;
   transition: all 0.5s;
-  position: fixed;
-  top: 50px;
-  left: 0;
-  bottom: 0;
 }
 .homeBox .el-aside .el-menu {
   width: 169px !important;
@@ -152,11 +187,6 @@ export default {
 }
 .homeBox .el-main {
   background-color: #eaedf1;
-  position: fixed;
-  left: 170px;
-  top: 50px;
-  right: 0;
-  bottom: 0;
 }
 .homeBox .el-header .headerTitle {
   color: #fff;
@@ -201,6 +231,7 @@ export default {
   border-top: 0;
   border-radius: 0 0 5px 5px;
   display: none;
+  background-color: #fff;
 }
 .homeBox .el-header .accountArea .logoutArea ul li {
   line-height: 30px;
