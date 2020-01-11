@@ -18,6 +18,11 @@ Vue.config.productionTip = false
 
 // 1.将axios挂载到Vue原型
 Vue.prototype.$http = axios
+// 2.将axios添加请求拦截器，挂载token
+// axios.interceptors.request.use(config => {
+//   config.headers.Authorization = window.sessionStorage.getItem('token')
+//   return config
+// })
 
 new Vue({
   router,
