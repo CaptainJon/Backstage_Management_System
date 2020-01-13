@@ -20,6 +20,10 @@ export default {
     xname: {
       type: String,
       default: 'X轴数据'
+    },
+    ygap: {
+      type: Number,
+      default: 60
     }
   },
   data() {
@@ -54,7 +58,7 @@ export default {
           show: true,
           name: this.yname,
           nameLocation: 'center',
-          nameGap: 60
+          nameGap: this.ygap
         },
         series: [{
           type: 'bar',
