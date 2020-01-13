@@ -39,6 +39,7 @@ const routes = [
       { path: '/onlinecalc', component: () => import(/* webpackChunkName: "operate" */ '../views/home/operate/OnlineCalc.vue') },
       { path: '/activeplayer', component: () => import(/* webpackChunkName: "operate" */ '../views/home/operate/ActivePlayer.vue') },
       { path: '/nextsaving', component: () => import(/* webpackChunkName: "operate" */ '../views/home/operate/NextSaving.vue') },
+      { path: '/whitelist', component: () => import(/* webpackChunkName: "gm" */ '../views/home/gm/WhiteList.vue') },
       { path: '/sendbonus', component: () => import(/* webpackChunkName: "gm" */ '../views/home/gm/SendBonus.vue') },
       { path: '/behavelog', component: () => import(/* webpackChunkName: "dataquery" */ '../views/home/dataquery/BehaveLog.vue') },
       { path: '/playermobile', component: () => import(/* webpackChunkName: "dataquery" */ '../views/home/dataquery/PlayerMobile.vue') }
