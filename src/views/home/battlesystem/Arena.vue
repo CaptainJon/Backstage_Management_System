@@ -66,7 +66,6 @@ export default {
           endTime: time[1]
         }
       }).then(res => {
-        console.log(res)
         // X轴数据赋值
         this.echartsOption.xAxis.data = res.data.dateList
         // 添加并重置第二条series数据到配置模板

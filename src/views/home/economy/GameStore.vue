@@ -47,7 +47,6 @@ export default {
           endTime: time[1]
         }
       }).then(res => {
-        console.log(res)
         // 标题设定
         this.title = this.ActiveButton
         // 数据赋值

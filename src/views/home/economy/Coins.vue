@@ -96,7 +96,6 @@ export default {
           endTime: time[1]
         }
       }).then(res => {
-        console.log(res)
         // 金币获取和消耗差值
         this.coinsDeficitChartOption.xAxis.data = res.data.dList
         this.coinsDeficitChartOption.series[0].data = res.data.numList
