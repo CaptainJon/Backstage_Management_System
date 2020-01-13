@@ -9,7 +9,7 @@
       <!-- 时间选择 -->
       <time-select @searchbtnclicked="searchClicked"></time-select>
       <!-- 金币获取消耗差值表格 -->
-      <echarts-box yname="差值" xname="时间" title="金币获取消耗差值" ref="coinsDeficitChartRef">
+      <echarts-box yname="差值" xname="时间" title="金币获取消耗差值" ref="coinsDeficitChartRef" :ygap="100">
         <div id="coinsDeficitChart" class="echarts500"></div>
       </echarts-box>
       <el-row :gutter='20'>
@@ -86,11 +86,17 @@ export default {
       echarts.init(document.getElementById('eventCoinGetRate')).setOption(this.evenCoinGetRateChartOption)
     },
     // 查询点击事件
-    searchClicked() {
-      this.getGameStoreData()
+    searchClicked(time) {
+      this.getGameStoreData(time)
     },
-    getGameStoreData() {
-      this.$http.get('/api/gadminc/business/coinHandle.json').then(res => {
+    getGameStoreData(time) {
+      this.$http.get('/api/gadminc/business/coinHandle.json', {
+        params: {
+          startTime: time[0],
+          endTime: time[1]
+        }
+      }).then(res => {
+        console.log(res)
         // 金币获取和消耗差值
         this.coinsDeficitChartOption.xAxis.data = res.data.dList
         this.coinsDeficitChartOption.series[0].data = res.data.numList
