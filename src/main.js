@@ -11,8 +11,6 @@ import axios from 'axios'
 import './assets/css/normalize.css'
 import './assets/css/global.css'
 
-import './mockdata/mockdata'
-
 // 额外设置
 Vue.config.productionTip = false
 
