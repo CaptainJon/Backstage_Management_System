@@ -44,3 +44,6 @@ thead tr th{
 .el-dialog__footer{
   padding: 0px 20px 10px;
 }
+.el-pagination{
+  margin-top: 10px;
+}
