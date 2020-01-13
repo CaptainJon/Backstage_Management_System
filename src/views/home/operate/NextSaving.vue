@@ -26,12 +26,17 @@ export default {
   },
   methods: {
     // 查询点击
-    searchClicked() {
-      this.getNextSavingData()
+    searchClicked(time) {
+      this.getNextSavingData(time)
     },
     // 数据请求
-    getNextSavingData() {
-      this.$http.get('/api/gadminc/business/yesterdayLoseKeep.json').then(res => {
+    getNextSavingData(time) {
+      this.$http.get('/api/gadminc/business/yesterdayLoseKeep.json', {
+        params: {
+          startTime: time[0],
+          endTime: time[1]
+        }
+      }).then(res => {
         // X轴赋值
         this.echartsOption.xAxis.data = res.data.dateList
         // Y轴赋值

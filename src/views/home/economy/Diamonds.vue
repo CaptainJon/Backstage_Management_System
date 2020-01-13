@@ -86,11 +86,16 @@ export default {
       echarts.init(document.getElementById('eventDiamondsGetRate')).setOption(this.evenDiamondsGetRateChartOption)
     },
     // 查询点击事件
-    searchClicked() {
-      this.getDiamondsData()
+    searchClicked(time) {
+      this.getDiamondsData(time)
     },
-    getDiamondsData() {
-      this.$http.get('/api/gadminc/business/diamondHandle.json').then(res => {
+    getDiamondsData(time) {
+      this.$http.get('/api/gadminc/business/diamondHandle.json', {
+        params: {
+          startTime: time[0],
+          endTime: time[1]
+        }
+      }).then(res => {
         // 钻石获取和消耗差值
         this.diamondsDeficitChartOption.xAxis.data = res.data.dList
         this.diamondsDeficitChartOption.series[0].data = res.data.numList

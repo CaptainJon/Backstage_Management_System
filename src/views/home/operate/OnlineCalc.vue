@@ -42,10 +42,10 @@ export default {
         // Y轴赋值
         this.echartsOption.series[0].data = res.data.numList
         // 面板赋值
-        this.onlineNow = res.data.onlineNum
-        this.onlineMax = res.data.onlineMaxNum
-        this.onlineAvg = res.data.onlineAvgNum
-        this.onlineTimeAvg = res.data.avgTime
+        this.onlineNow = res.data.onlineNum * 1
+        this.onlineMax = res.data.onlineMaxNum * 1
+        this.onlineAvg = res.data.onlineAvgNum * 1
+        this.onlineTimeAvg = res.data.avgTime * 1
         // 渲染表格
         this.renderCharts()
       })
