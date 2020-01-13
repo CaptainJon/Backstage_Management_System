@@ -35,6 +35,7 @@
 </template>
 
 <script>
+import _ from 'lodash'
 import echarts from 'echarts'
 import TimeSelect from '../../../publicComponents/TimeSelect'
 import EchartsBox from '../../../publicComponents/EchartsBox'
@@ -44,7 +45,8 @@ export default {
       difficulty: '1',
       activeButton: 'total',
       title: '裂隙·I-总挑战次数',
-      echartsOption: {},
+      pplEchartsOption: {},
+      timesEchartsOption: {},
       ydata: [
         {
           type: 'bar',
@@ -85,42 +87,41 @@ export default {
           degree: this.difficulty
         }
       }).then(res => {
-        console.log(res)
         // X轴数据赋值
-        this.echartsOption.xAxis.data = res.data.playerCount.nameList
+        this.pplEchartsOption.xAxis.data = res.data.playerCount.nameList
+        this.timesEchartsOption.xAxis.data = res.data.playerCount.nameList
         // Y轴数据赋值
         if (this.activeButton === 'total') {
           this.title = this.chartTitle + '-总挑战次数'
-          // 重置数据项
-          this.echartsOption.series = []
           // 重新赋值模板
-          this.echartsOption.series = this.ydata
+          this.timesEchartsOption.series = this.ydata
           // 重新赋值
-          this.echartsOption.series[0].name = '总挑战次数'
-          // this.echartsOption.series[0].data = res.data.storyTotal.numList
-          // this.echartsOption.series[1].name = '成功次数'
-          // this.echartsOption.series[1].data = res.data.storyTotal.finishList
+          this.timesEchartsOption.series[0].name = '总挑战次数'
+          this.timesEchartsOption.series[0].data = res.data.storyTotal.numList
+          this.timesEchartsOption.series[1].name = '成功次数'
+          this.timesEchartsOption.series[1].data = res.data.storyTotal.finishList
         } else {
           this.title = this.chartTitle + '-总挑战人数'
-          // 重置数据项
-          this.echartsOption.series = []
-          // 重新赋值模板
-          this.echartsOption.series[0] = this.ydata[0]
-          // 重新赋值
-          this.echartsOption.series[0].data = res.data.playerCount.numList
+          this.pplEchartsOption.series[0].data = res.data.playerCount.numList
         }
         // 渲染表格
         this.renderCharts()
       })
     },
     renderCharts() {
-      echarts.init(document.getElementById('spaceriftChart')).clear()
-      echarts.init(document.getElementById('spaceriftChart')).setOption(this.echartsOption)
+      if (this.activeButton === 'total') {
+        echarts.init(document.getElementById('spaceriftChart')).clear()
+        echarts.init(document.getElementById('spaceriftChart')).setOption(this.timesEchartsOption)
+      } else {
+        echarts.init(document.getElementById('spaceriftChart')).clear()
+        echarts.init(document.getElementById('spaceriftChart')).setOption(this.pplEchartsOption)
+      }
     }
   },
   mounted() {
     // 储存Echarts配置数据
-    this.echartsOption = this.$refs.spaceriftChartRef.echartsCommonOption
+    this.pplEchartsOption = _.cloneDeep(this.$refs.spaceriftChartRef.echartsCommonOption)
+    this.timesEchartsOption = _.cloneDeep(this.$refs.spaceriftChartRef.echartsCommonOption)
   },
   components: {
     TimeSelect,
