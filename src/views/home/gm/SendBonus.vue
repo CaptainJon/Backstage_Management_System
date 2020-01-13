@@ -54,7 +54,7 @@
           <el-input clearable placeholder="格式：道具ID,数量 | 道具ID,数量" v-model="sendEmailForm.bonusStr"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button icon="el-icon-check" size="mini" type="primary">提交</el-button>
+          <el-button icon="el-icon-check" size="mini" type="primary" @click="sendEmail('sendEmailFormRef')">提交</el-button>
           <el-button icon="el-icon-refresh-left" size="mini" type="danger" @click="resetForm('sendEmailFormRef')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -83,7 +83,7 @@
           <el-input clearable placeholder="请输入关卡ID" v-model="unlockDungeonForm.bonusNum"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button icon="el-icon-check" size="mini" type="primary">提交</el-button>
+          <el-button icon="el-icon-check" size="mini" type="primary" @click="unlockDungeon('unlockDungeonFormRef')">提交</el-button>
           <el-button icon="el-icon-refresh-left" size="mini" type="danger" @click="resetForm('unlockDungeonFormRef')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -112,7 +112,7 @@
           <el-input clearable placeholder="请输入经验值" v-model="addExpForm.bonusNum"></el-input>
         </el-form-item>
         <el-form-item>
-          <el-button icon="el-icon-check" size="mini" type="primary">提交</el-button>
+          <el-button icon="el-icon-check" size="mini" type="primary" @click="addExp('addExpFormRef')">提交</el-button>
           <el-button icon="el-icon-refresh-left" size="mini" type="danger" @click="resetForm('addExpFormRef')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -135,7 +135,7 @@
           </el-select>
         </el-form-item>
         <el-form-item>
-          <el-button icon="el-icon-check" size="mini" type="primary">提交</el-button>
+          <el-button icon="el-icon-check" size="mini" type="primary" @click="hotLoad('resourceHotLoadFormRef')">提交</el-button>
           <el-button icon="el-icon-refresh-left" size="mini" type="danger" @click="resetForm('resourceHotLoadFormRef')">重置</el-button>
         </el-form-item>
       </el-form>
@@ -181,12 +181,56 @@ export default {
     // 服务器数据获取
     getServerListData() {
       this.$http.get('/api/gadminc/server/listServers.json').then(res => {
-        this.serverListData = res.data.serverList
+        this.serverListData = res.data
       })
     },
     // 表单重置
     resetForm(formref) {
       this.$refs[formref].resetFields()
+    },
+    // 提交邮件
+    sendEmail(chartRef) {
+      this.$http.get('/api/gadminc/business/sendMail.json', {
+        params: this.sendEmailForm
+      }).then(() => {
+        this.$message.success('发送成功')
+        this.resetForm(chartRef)
+      }).catch(() => {
+        this.$message.error('发送失败')
+      })
+    },
+    // 解锁关卡
+    unlockDungeon(chartRef) {
+      this.$http.get('/api/gadminc/business/openCheck.json', {
+        params: this.unlockDungeonForm
+      }).then(() => {
+        this.$message.success('提交成功')
+        this.resetForm(chartRef)
+      }).catch(() => {
+        this.$message.error('发送失败')
+      })
+    },
+    // 增加经验
+    addExp(chartRef) {
+      this.$http.get('/api//gadminc/business/addExp.json', {
+        params: this.addExpForm
+      }).then(() => {
+        this.$message.success('提交成功')
+        this.resetForm(chartRef)
+      }).catch(() => {
+        this.$message.error('提交失败')
+      })
+    },
+    // 资源热加载
+    hotLoad(chartRef) {
+      this.$http.get('/api/gadminc/business/resLoad.json', {
+        params: this.resourceHotLoadForm
+      }).then(() => {
+        this.$message.success('提交成功')
+        this.resetForm(chartRef)
+      }).catch(() => {
+        this.$message.error('提交失败')
+      })
     }
   }
 }
