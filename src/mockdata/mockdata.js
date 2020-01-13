@@ -258,12 +258,12 @@ import Mock from 'mockjs'
 // })
 
 // GM操作服务器列表数据
-Mock.mock('/api/gadminc/server/listServers.json', {
-  'serverList': [{
-    'id': 1,
-    'serverId': 1,
-    'name': '106.52.104.153',
-    'serviceURLPrefix': 'http://106.52.104.153:8280',
-    'description': '外网'
-  }]
-})
+// Mock.mock('/api/gadminc/server/listServers.json', {
+//   'serverList': [{
+//     'id': 1,
+//     'serverId': 1,
+//     'name': '106.52.104.153',
+//     'serviceURLPrefix': 'http://106.52.104.153:8280',
+//     'description': '外网'
+//   }]
+// })
