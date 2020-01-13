@@ -72,6 +72,7 @@
                 <i class="el-icon-s-tools"></i>
                 <span>GM操作</span>
               </template>
+              <el-menu-item index="whitelist">白名单</el-menu-item>
               <el-menu-item index="sendbonus">奖励发放</el-menu-item>
             </el-submenu>
             <el-submenu index="5">
