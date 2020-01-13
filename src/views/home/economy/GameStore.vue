@@ -15,7 +15,7 @@
         <el-button size="small" :class="{arenaActive: ActiveButton === '竞技场试炼'}" @click="ActiveButton = '竞技场试炼'">竞技场试炼</el-button>
       </el-button-group>
       <!-- 数据表格 -->
-      <echarts-box yname="销量" xname="材料名" :title="title" ref="gamestoreChartRef">
+      <echarts-box yname="销量" xname="材料名" :title="title" ref="gamestoreChartRef" :ygap="100">
         <div id="gamestoreChart" class="echarts600"></div>
       </echarts-box>
     </el-card>
@@ -36,12 +36,18 @@ export default {
   },
   methods: {
     // 查询按钮点击
-    searchClicked() {
-      this.getGameStoreData()
+    searchClicked(time) {
+      this.getGameStoreData(time)
     },
     // 数据获取
-    getGameStoreData() {
-      this.$http.get('/api/gadminc/business/shopBuyItem.json').then(res => {
+    getGameStoreData(time) {
+      this.$http.get('/api/gadminc/business/shopBuyItem.json', {
+        params: {
+          startTime: time[0],
+          endTime: time[1]
+        }
+      }).then(res => {
+        console.log(res)
         // 标题设定
         this.title = this.ActiveButton
         // 数据赋值
