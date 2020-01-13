@@ -6,7 +6,7 @@
       <el-breadcrumb-item>行为日志</el-breadcrumb-item>
     </el-breadcrumb>
     <el-card>
-      <time-select>
+      <time-select @searchbtnclicked="searchClicked">
         <div class="behaveUserId">
           <el-input placeholder="请输入内容" size="small" v-model="loginId">
             <template slot="prepend">用户ID</template>
@@ -14,19 +14,19 @@
         </div>
       </time-select>
       <!-- 表格区域 -->
-      <el-table :data="formData" border style="width: 100%" size="mini">
-        <el-table-column type="index" label="#"></el-table-column>
-        <el-table-column label="actionId" prop="actionId"></el-table-column>
-        <el-table-column label="spId" prop="spId"></el-table-column>
-        <el-table-column label="level" prop="level"></el-table-column>
-        <el-table-column label="diamond" prop="diamond"></el-table-column>
-        <el-table-column label="gold" prop="gold"></el-table-column>
-        <el-table-column label="soulStone" prop="soulStone"></el-table-column>
-        <el-table-column label="actionTime" prop="actionTime"></el-table-column>
-        <el-table-column label="actType" prop="actType"></el-table-column>
-        <el-table-column label="value1" prop="value1"></el-table-column>
-        <el-table-column label="value2" prop="value2"></el-table-column>
-        <el-table-column label="serverId" prop="serverId"></el-table-column>
+      <el-table :data="formData" border style="width: 100%" size="mini" v-loading="loading">
+        <el-table-column type="index" label="#" width="50"></el-table-column>
+        <el-table-column label="actionId" prop="actionId" width="120"></el-table-column>
+        <el-table-column label="spId" prop="spId" width="50"></el-table-column>
+        <el-table-column label="level" prop="level" width="60"></el-table-column>
+        <el-table-column label="diamond" prop="diamond" width="80"></el-table-column>
+        <el-table-column label="gold" prop="gold" width="100"></el-table-column>
+        <el-table-column label="soulStone" prop="soulStone" width="100"></el-table-column>
+        <el-table-column label="actionTime" prop="actionTime" width="140"></el-table-column>
+        <el-table-column label="actType" prop="actType" width="70"></el-table-column>
+        <el-table-column label="value1" prop="value1" width="100"></el-table-column>
+        <el-table-column label="value2" prop="value2" width="100"></el-table-column>
+        <el-table-column label="serverId" prop="serverId" width="75"></el-table-column>
         <el-table-column label="paramStr" prop="paramStr"></el-table-column>
       </el-table>
     </el-card>
@@ -39,11 +39,32 @@ export default {
   data() {
     return {
       loginId: null,
-      formData: []
+      formData: [],
+      loading: false
     }
   },
   components: {
     TimeSelect
+  },
+  methods: {
+    // 查询点击
+    searchClicked(time) {
+      this.getLogData(time)
+    },
+    // 获取日志数据
+    getLogData(time) {
+      this.loading = true
+      this.$http.get('/api/gadminc/data/userActionOperate.json', {
+        params: {
+          startTime: time[0],
+          endTime: time[1],
+          loginId: this.loginId
+        }
+      }).then(res => {
+        this.loading = false
+        this.formData = res.data
+      })
+    }
   }
 }
 </script>
