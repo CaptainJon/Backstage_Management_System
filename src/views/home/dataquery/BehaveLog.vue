@@ -54,7 +54,7 @@ export default {
     // 获取日志数据
     getLogData(time) {
       this.loading = true
-      this.$http.get('/api/gadminc/data/userActionOperate.json', {
+      this.$http.get('/gadminc/data/userActionOperate.json', {
         params: {
           startTime: time[0],
           endTime: time[1],

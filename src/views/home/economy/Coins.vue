@@ -90,7 +90,7 @@ export default {
       this.getGameStoreData(time)
     },
     getGameStoreData(time) {
-      this.$http.get('/api/gadminc/business/coinHandle.json', {
+      this.$http.get('/gadminc/business/coinHandle.json', {
         params: {
           startTime: time[0],
           endTime: time[1]

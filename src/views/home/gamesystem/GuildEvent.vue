@@ -60,7 +60,7 @@ export default {
     // 页面数据获取
     getGuildEventData(selectedTime) {
       this.$http
-        .get('/api/gadminc/business/combatTeamMission.json', {
+        .get('/gadminc/business/combatTeamMission.json', {
           params: {
             startTime: selectedTime[0],
             endTime: selectedTime[1]

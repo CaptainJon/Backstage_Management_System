@@ -40,7 +40,7 @@ export default {
     // 查询按钮
     showList() {
       this.$http
-        .get('/api/gadminc/data/accountPhoneType.json', {
+        .get('/gadminc/data/accountPhoneType.json', {
           params: {
             accountId: this.accountId
           }

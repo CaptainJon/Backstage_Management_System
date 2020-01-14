@@ -36,7 +36,7 @@ export default {
   methods: {
     // 数据请求
     getOnlineCalcData() {
-      this.$http.get('/api/gadminc/business/onlineData.json').then(res => {
+      this.$http.get('/gadminc/business/onlineData.json').then(res => {
         // X轴赋值
         this.echartsOption.xAxis.data = res.data.dateList
         // Y轴赋值

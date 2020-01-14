@@ -78,7 +78,7 @@ export default {
   },
   methods: {
     getGuildInfoData() {
-      this.$http.get('/api/gadminc/business/combatTeam.json').then(res => {
+      this.$http.get('/gadminc/business/combatTeam.json').then(res => {
         this.outGuildUser = res.data.notJoinAmount
         this.inGuildUser = res.data.joinAmount
         this.guildAvgUser = res.data.avgTeamUserAmount

@@ -89,7 +89,7 @@ export default {
   methods: {
     // 请求数据
     getGameSystemData(selectedTime) {
-      this.$http.get('/api/gadminc/business/system.json', {
+      this.$http.get('/gadminc/business/system.json', {
         params: {
           startTime: selectedTime[0],
           endTime: selectedTime[1]

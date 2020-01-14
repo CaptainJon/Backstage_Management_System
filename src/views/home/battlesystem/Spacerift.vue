@@ -80,7 +80,7 @@ export default {
     },
     // 获取数据
     getSpaceriftData(time) {
-      this.$http.get('/api/gadminc/business/spaceTime.json', {
+      this.$http.get('/gadminc/business/spaceTime.json', {
         params: {
           startTime: time[0],
           endTime: time[1],

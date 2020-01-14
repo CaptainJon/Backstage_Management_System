@@ -57,7 +57,7 @@ export default {
     },
     // 数据请求
     getActivePlayerData() {
-      this.$http.get('/api/gadminc/business/activeUser.json').then(res => {
+      this.$http.get('/gadminc/business/activeUser.json').then(res => {
         // 面板数据赋值
         this.activeToday = res.data.actOne
         this.active7 = res.data.actSeven

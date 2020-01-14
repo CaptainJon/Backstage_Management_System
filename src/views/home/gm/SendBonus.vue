@@ -180,7 +180,7 @@ export default {
   methods: {
     // 服务器数据获取
     getServerListData() {
-      this.$http.get('/api/gadminc/server/listServers.json').then(res => {
+      this.$http.get('/gadminc/server/listServers.json').then(res => {
         this.serverListData = res.data
       })
     },
@@ -190,7 +190,7 @@ export default {
     },
     // 提交邮件
     sendEmail(chartRef) {
-      this.$http.get('/api/gadminc/business/sendMail.json', {
+      this.$http.get('/gadminc/business/sendMail.json', {
         params: this.sendEmailForm
       }).then(() => {
         this.$message.success('发送成功')
@@ -201,7 +201,7 @@ export default {
     },
     // 解锁关卡
     unlockDungeon(chartRef) {
-      this.$http.get('/api/gadminc/business/openCheck.json', {
+      this.$http.get('/gadminc/business/openCheck.json', {
         params: this.unlockDungeonForm
       }).then(() => {
         this.$message.success('提交成功')
@@ -212,7 +212,7 @@ export default {
     },
     // 增加经验
     addExp(chartRef) {
-      this.$http.get('/api//gadminc/business/addExp.json', {
+      this.$http.get('//gadminc/business/addExp.json', {
         params: this.addExpForm
       }).then(() => {
         this.$message.success('提交成功')
@@ -223,7 +223,7 @@ export default {
     },
     // 资源热加载
     hotLoad(chartRef) {
-      this.$http.get('/api/gadminc/business/resLoad.json', {
+      this.$http.get('/gadminc/business/resLoad.json', {
         params: this.resourceHotLoadForm
       }).then(() => {
         this.$message.success('提交成功')

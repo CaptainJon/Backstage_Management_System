@@ -62,7 +62,7 @@ export default {
     // 数据获取
     getWhiteListData() {
       this.$http
-        .get('/api/gadminc/white/whiteList.json', {
+        .get('/gadminc/white/whiteList.json', {
           params: {
             pageIndex: this.pageIndex
           }
@@ -82,7 +82,7 @@ export default {
     // 添加白名单
     addWhiteList() {
       this.$http
-        .get('/api/gadminc/white/addWhite.json', {
+        .get('/gadminc/white/addWhite.json', {
           params: {
             accountId: this.accountId
           }
@@ -101,7 +101,7 @@ export default {
       this.$confirm('此操作将永久删除该角色, 是否继续?', '警告')
         .then(() => {
           this.$http
-            .get('/api/gadminc/white/deleteWhite.json', {
+            .get('/gadminc/white/deleteWhite.json', {
               params: {
                 accountId: row.id
               }

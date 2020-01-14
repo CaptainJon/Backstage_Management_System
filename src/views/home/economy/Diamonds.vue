@@ -90,7 +90,7 @@ export default {
       this.getDiamondsData(time)
     },
     getDiamondsData(time) {
-      this.$http.get('/api/gadminc/business/diamondHandle.json', {
+      this.$http.get('/gadminc/business/diamondHandle.json', {
         params: {
           startTime: time[0],
           endTime: time[1]

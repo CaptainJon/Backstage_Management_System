@@ -31,7 +31,7 @@ export default {
     },
     // 数据请求
     getNextSavingData(time) {
-      this.$http.get('/api/gadminc/business/yesterdayLoseKeep.json', {
+      this.$http.get('/gadminc/business/yesterdayLoseKeep.json', {
         params: {
           startTime: time[0],
           endTime: time[1]

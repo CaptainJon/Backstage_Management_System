@@ -43,7 +43,7 @@ export default {
   methods: {
     // 获取数据
     getHardCoreData(time) {
-      this.$http.get('/api/gadminc/business/resStage.json', {
+      this.$http.get('/gadminc/business/resStage.json', {
         params: {
           startTime: time[0],
           endTime: time[1],

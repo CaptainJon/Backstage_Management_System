@@ -31,7 +31,7 @@ export default {
   methods: {
     // 数据获取
     getBaseBuildingData() {
-      this.$http.get('/api/gadminc/business/basement.json').then(res => {
+      this.$http.get('/gadminc/business/basement.json').then(res => {
         this.baseBuildingData = res.data
         // 关闭Loading
         this.loading = false

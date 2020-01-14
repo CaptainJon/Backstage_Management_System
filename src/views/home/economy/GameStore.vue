@@ -41,7 +41,7 @@ export default {
     },
     // 数据获取
     getGameStoreData(time) {
-      this.$http.get('/api/gadminc/business/shopBuyItem.json', {
+      this.$http.get('/gadminc/business/shopBuyItem.json', {
         params: {
           startTime: time[0],
           endTime: time[1]

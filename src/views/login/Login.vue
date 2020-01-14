@@ -60,7 +60,7 @@ export default {
       // 开启表单格式验证
       this.$refs.loginFormRef.validate(async valid => {
         if (valid) {
-          const res = await this.$http.get('/api/gadmin/loginWithVerificationCodeServlet2', {
+          const res = await this.$http.get('/gadmin/loginWithVerificationCodeServlet2', {
             params: {
               name: this.loginForm.name,
               password: this.loginForm.password

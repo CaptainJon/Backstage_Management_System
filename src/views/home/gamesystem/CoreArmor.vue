@@ -34,7 +34,7 @@ export default {
   methods: {
     // 获取核芯装备数据
     getHerosData() {
-      this.$http.get('/api/gadminc/business/equip.json').then(res => {
+      this.$http.get('/gadminc/business/equip.json').then(res => {
         const coreName = [] // 非重复核芯名
         const repeatedCoreName = [] // 重复核芯名
         const coreData = [] // 核芯数据

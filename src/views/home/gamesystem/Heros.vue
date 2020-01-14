@@ -39,7 +39,7 @@ export default {
   methods: {
     // 获取英雄数据
     getHerosData() {
-      this.$http.get('/api/gadminc/business/hero.json').then(res => {
+      this.$http.get('/gadminc/business/hero.json').then(res => {
         this.loading = false
         this.herosData = res.data
       })

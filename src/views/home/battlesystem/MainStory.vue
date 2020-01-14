@@ -53,7 +53,7 @@ export default {
     },
     // 获取数据
     getMainStoryData(selectedTime) {
-      this.$http.get('/api/gadminc/business/mainStory.json', {
+      this.$http.get('/gadminc/business/mainStory.json', {
         params: {
           startTime: selectedTime[0],
           endTime: selectedTime[1],

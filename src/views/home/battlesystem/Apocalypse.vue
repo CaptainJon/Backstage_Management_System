@@ -39,7 +39,7 @@ export default {
     },
     // 数据获取
     getApocalypseData(time) {
-      this.$http.get('/api/gadminc/business/apocalypse.json', {
+      this.$http.get('/gadminc/business/apocalypse.json', {
         params: {
           startTime: time[0],
           endTime: time[1]

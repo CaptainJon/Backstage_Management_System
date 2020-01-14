@@ -52,7 +52,7 @@ export default {
     },
     // 数据请求
     getNewPlayerData() {
-      this.$http.get('/api/gadminc/business/userIncreased.json').then(res => {
+      this.$http.get('/gadminc/business/userIncreased.json').then(res => {
         // X轴赋值
         this.dailyNewerChartOption.xAxis.data = res.data.daList
         this.dailyLoginChartOption.xAxis.data = res.data.daList

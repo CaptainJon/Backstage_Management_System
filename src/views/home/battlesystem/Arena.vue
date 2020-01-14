@@ -60,7 +60,7 @@ export default {
     },
     // 获取页面数据
     getArenaData(time) {
-      this.$http.get('/api/gadminc/business/arena.json', {
+      this.$http.get('/gadminc/business/arena.json', {
         params: {
           startTime: time[0],
           endTime: time[1]
