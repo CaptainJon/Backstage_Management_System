@@ -16,11 +16,15 @@ Vue.config.productionTip = false
 
 // 1.将axios挂载到Vue原型
 Vue.prototype.$http = axios
-// 2.将axios添加请求拦截器，挂载token
-// axios.interceptors.request.use(config => {
-//   config.headers.Authorization = window.sessionStorage.getItem('token')
-//   return config
-// })
+// 2.设置axios公共路径(上线时需要注释掉)
+axios.defaults.baseURL = '/app'
+
+// axios拦截器
+axios.interceptors.request.use(config => {
+  config.headers.Authorization = window.sessionStorage.getItem('gadmin-user')
+  console.log()
+  return config
+})
 
 new Vue({
   router,

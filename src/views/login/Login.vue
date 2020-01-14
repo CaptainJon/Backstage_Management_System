@@ -40,8 +40,8 @@ export default {
     return {
       // 登录表单数据
       loginForm: {
-        name: 'neil',
-        password: 'youmisky'
+        name: '', // 账户
+        password: '' // 密码
       },
       // 登录表单验证规则
       loginFormRule: {
@@ -58,24 +58,32 @@ export default {
     // 登录按钮
     login() {
       // 开启表单格式验证
-      this.$refs.loginFormRef.validate(async valid => {
+      this.$refs.loginFormRef.validate(valid => {
         if (valid) {
-          const res = await this.$http.get('/gadmin/loginWithVerificationCodeServlet2', {
+          this.$http.get('/gadmin/loginWithVerificationCodeServlet2', {
             params: {
               name: this.loginForm.name,
               password: this.loginForm.password
             }
+          }).then(res => {
+            // 判断是否具有token
+            const token = res.data.split(':').includes('token')
+            console.log(token)
+            if (token) {
+              // 获取token字符串
+              let tokenStr = res.data.split(':')[1]
+              // 设置token值
+              // document.cookie = 'gadmin-user=' + tokenStr
+              window.sessionStorage.setItem('gadmin-user', tokenStr)
+              this.$message.success('登录成功')
+              // 跳转到首页
+              this.$router.push('home')
+            } else {
+              this.$message.error('账户或密码错误')
+            }
+          }).catch(err => {
+            return err
           })
-          // 处理后端返回的token数据
-          if (res.data.includes('token')) {
-            const tokenVal = res.data.split(':')
-            // 因后端在每次请求时都主动往浏览器cookie中获取token进行验证，实际上前端也进行了验证，因此token要储存在cookie中，否则后端会返回一个不存在的页面跳转指令，即页面不发生变化
-            document.cookie = 'gadmin-user' + '=' + tokenVal[1]
-            this.$message.success('登录成功')
-            this.$router.push('/home')
-          } else {
-            this.$message.error('密码错误')
-          }
         }
       })
     }
