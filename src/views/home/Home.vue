@@ -83,6 +83,13 @@
               <el-menu-item index="behavelog">行为日志</el-menu-item>
               <el-menu-item index="playermobile">用户机型</el-menu-item>
             </el-submenu>
+            <el-submenu index="6">
+              <template slot="title">
+                <i class="el-icon-s-custom"></i>
+                <span>账户管理</span>
+              </template>
+              <el-menu-item index="userlist">用户管理</el-menu-item>
+            </el-submenu>
           </el-menu>
         </el-aside>
         <!-- 内容区域 -->
@@ -95,10 +102,10 @@
     <el-dialog :visible.sync="dialogVisible" title="密码修改" width="25%">
       <el-form :model="passform" label-width="80px" ref="form" size="small">
         <el-form-item label="原始密码">
-          <el-input v-model="passform.oldPassword" type="password"></el-input>
+          <el-input v-model="passform.oldPwd" type="password"></el-input>
         </el-form-item>
         <el-form-item label="最新密码">
-          <el-input v-model="passform.newPassword" type="password"></el-input>
+          <el-input v-model="passform.newPwd" type="password"></el-input>
         </el-form-item>
       </el-form>
       <span class="dialog-footer" slot="footer">
@@ -114,30 +121,38 @@ export default {
   name: 'home',
   data() {
     return {
-      dialogVisible: false,
+      dialogVisible: false, // 修改密码对话框初始是否可见
       passform: {
-        oldPassword: '',
-        newPassword: ''
+        oldPwd: '', // 原始密码
+        newPwd: '' // 新密码
       }
     }
   },
   methods: {
     // 登录退出
     logout() {
-      this.$confirm('您即将退出系统，是否继续?', '警告', { type: 'warning' })
-        .then(() => {
+      this.$confirm('您即将退出系统，是否继续?', '警告', { type: 'warning' }).then(() => {
+        // 发送退出请求
+        this.$http.get('/gadmin/loginWithVerificationCodeServlet', {
+          params: {
+            logout: true
+          }
+        }).then(res => {
           // 跳转登录页
           this.$router.push('/login')
-          // 清除session里的token
-          window.sessionStorage.removeItem('token')
         })
-        .catch(err => {
-          return err
-        })
+      }).catch(err => {
+        return err
+      })
     },
     // 修改密码确认
     confirmChangePass() {
-      this.dialogVisible = false
+      this.$http.post('/gadminc/account/changePassword.json', this.passform).then(res => {
+        this.$message.success('修改成功')
+        this.dialogVisible = false
+      }).catch(() => {
+        this.$message.error('修改失败')
+      })
     }
   }
 }
