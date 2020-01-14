@@ -76,7 +76,12 @@ export default {
   methods: {
     // 查询点击
     searchClicked(time) {
-      this.getSpaceriftData(time)
+      if (time.length === 2) {
+        // 获取并渲染数据
+        this.getSpaceriftData(time)
+      } else {
+        this.$alert('请先选择时间区间！', '提示', { type: 'warning' })
+      }
     },
     // 获取数据
     getSpaceriftData(time) {

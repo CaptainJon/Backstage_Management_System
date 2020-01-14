@@ -56,7 +56,12 @@ export default {
   methods: {
     // 查询按钮点击
     searchClicked(time) {
-      this.getArenaData(time)
+      if (time.length === 2) {
+        // 获取并渲染数据
+        this.getArenaData(time)
+      } else {
+        this.$alert('请先选择时间区间！', '提示', { type: 'warning' })
+      }
     },
     // 获取页面数据
     getArenaData(time) {

@@ -115,8 +115,12 @@ export default {
     },
     // 子组件查询按钮点击
     childsearchbtnclicked(selectedTime) {
-      // 获取并渲染数据
-      this.getGameSystemData(selectedTime)
+      if (selectedTime.length === 2) {
+        // 获取并渲染数据
+        this.getGameSystemData(selectedTime)
+      } else {
+        this.$alert('请先选择时间区间！', '提示', { type: 'warning' })
+      }
     },
     // 渲染表格
     renderCharts() {

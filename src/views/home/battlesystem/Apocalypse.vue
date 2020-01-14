@@ -35,7 +35,12 @@ export default {
   methods: {
     // 查询点击
     searchClicked(time) {
-      this.getApocalypseData(time)
+      if (time.length === 2) {
+        // 获取并渲染数据
+        this.getApocalypseData(time)
+      } else {
+        this.$alert('请先选择时间区间！', '提示', { type: 'warning' })
+      }
     },
     // 数据获取
     getApocalypseData(time) {

@@ -87,7 +87,12 @@ export default {
     },
     // 查询点击事件
     searchClicked(time) {
-      this.getDiamondsData(time)
+      if (time.length === 2) {
+        // 获取并渲染数据
+        this.getDiamondsData(time)
+      } else {
+        this.$alert('请先选择时间区间！', '提示', { type: 'warning' })
+      }
     },
     getDiamondsData(time) {
       this.$http.get('/gadminc/business/diamondHandle.json', {

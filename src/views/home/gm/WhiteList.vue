@@ -19,7 +19,7 @@
         <el-table-column label="手机号码" prop="phone"></el-table-column>
         <el-table-column label="操作">
           <template v-slot="slotProp">
-            <el-button @click="deleteWhiteList(slotProp.row)" type="danger" size="mini">删除</el-button>
+            <el-button @click="deleteWhiteList(slotProp.row)" size="mini" type="danger">删除</el-button>
           </template>
         </el-table-column>
       </el-table>
@@ -34,7 +34,7 @@
     </el-card>
     <!-- 添加白名单Dialog -->
     <el-dialog :visible.sync="dialogVisible" title="添加白名单" width="30%">
-      <el-input placeholder="请输入要添加的id" v-model="accountId"></el-input>
+      <el-input placeholder="请输入要添加的id" required v-model="accountId"></el-input>
       <span class="dialog-footer" slot="footer">
         <el-button @click="dialogVisible = false" size="small">取 消</el-button>
         <el-button @click="addWhiteList" size="small" type="primary">确 定</el-button>
@@ -52,7 +52,7 @@ export default {
       total: 0,
       pageSize: 0,
       dialogVisible: false,
-      accountId: null
+      accountId: ''
     }
   },
   created() {
@@ -81,20 +81,24 @@ export default {
     },
     // 添加白名单
     addWhiteList() {
-      this.$http
-        .get('/gadminc/white/addWhite.json', {
-          params: {
-            accountId: this.accountId
-          }
-        })
-        .then(() => {
-          this.dialogVisible = false
-          this.$message.success('添加成功')
-          this.getWhiteListData()
-        })
-        .catch(() => {
-          this.$message.error('添加失败')
-        })
+      if (this.accountId !== '') {
+        this.$http
+          .get('/gadminc/white/addWhite.json', {
+            params: {
+              accountId: this.accountId
+            }
+          })
+          .then(() => {
+            this.dialogVisible = false
+            this.$message.success('添加成功')
+            this.getWhiteListData()
+          })
+          .catch(() => {
+            this.$message.error('添加失败')
+          })
+      } else {
+        this.$alert('id不能为空！', '提示', { type: 'warning' })
+      }
     },
     // 删除白名单
     deleteWhiteList(row) {
@@ -109,7 +113,8 @@ export default {
             .then(() => {
               this.$message.success('删除成功')
               this.getWhiteListData()
-            }).catch(() => {
+            })
+            .catch(() => {
               this.$message.error('删除失败')
             })
         })

@@ -70,7 +70,12 @@ export default {
     },
     // 查询点击
     searchClicked(time) {
-      this.getHardCoreData(time)
+      if (time.length === 2) {
+        // 获取并渲染数据
+        this.getHardCoreData(time)
+      } else {
+        this.$alert('请先选择时间区间！', '提示', { type: 'warning' })
+      }
     }
   },
   mounted() {

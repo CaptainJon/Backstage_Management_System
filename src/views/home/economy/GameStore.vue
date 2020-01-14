@@ -37,7 +37,12 @@ export default {
   methods: {
     // 查询按钮点击
     searchClicked(time) {
-      this.getGameStoreData(time)
+      if (time.length === 2) {
+        // 获取并渲染数据
+        this.getGameStoreData(time)
+      } else {
+        this.$alert('请先选择时间区间！', '提示', { type: 'warning' })
+      }
     },
     // 数据获取
     getGameStoreData(time) {

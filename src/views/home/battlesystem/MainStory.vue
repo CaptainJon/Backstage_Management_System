@@ -49,7 +49,12 @@ export default {
     },
     // 查询点击
     searchClicked(selectedTime) {
-      this.getMainStoryData(selectedTime)
+      if (selectedTime.length === 2) {
+        // 获取并渲染数据
+        this.getMainStoryData(selectedTime)
+      } else {
+        this.$alert('请先选择时间区间！', '提示', { type: 'warning' })
+      }
     },
     // 获取数据
     getMainStoryData(selectedTime) {
