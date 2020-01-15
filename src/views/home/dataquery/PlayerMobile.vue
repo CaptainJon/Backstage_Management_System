@@ -29,7 +29,7 @@ import FieldLegend from '../../../publicComponents/FieldLegend'
 export default {
   data() {
     return {
-      accountId: null,
+      accountId: '',
       formData: []
     }
   },
@@ -39,21 +39,27 @@ export default {
   methods: {
     // 查询按钮
     showList() {
-      this.$http
-        .get('/gadminc/data/accountPhoneType.json', {
-          params: {
-            accountId: this.accountId
-          }
+      if (this.accountId === '') {
+        this.$alert('用户ID不能为空', '警告', { type: 'warning' })
+      } else {
+        this.getPlayerMobileData()
+      }
+    },
+    // 数据获取
+    getPlayerMobileData() {
+      this.$http.get('/gadminc/data/accountPhoneType.json', {
+        params: {
+          accountId: this.accountId
+        }
+      }).then(res => {
+        this.formData = []
+        this.formData.push({
+          accountId: res.data.accountId,
+          uId: res.data.uId,
+          ua: res.data.ua,
+          phone: res.data.phone
         })
-        .then(res => {
-          this.formData = []
-          this.formData.push({
-            accountId: res.data.accountId,
-            uId: res.data.uId,
-            ua: res.data.ua,
-            phone: res.data.phone
-          })
-        })
+      })
     }
   }
 }
