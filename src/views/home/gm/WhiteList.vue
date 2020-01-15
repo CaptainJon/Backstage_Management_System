@@ -68,9 +68,9 @@ export default {
           }
         })
         .then(res => {
-          this.pageIndex = res.data.pageIndex
-          this.total = res.data.total
-          this.pageSize = res.data.pageSize
+          this.pageIndex = res.data.pageIndex === undefined ? 1 : res.data.pageIndex
+          this.total = res.data.total === undefined ? 0 : res.data.total
+          this.pageSize = res.data.pageSize === undefined ? 20 : res.data.pageSize
           this.formData = res.data.playerList
         })
     },
