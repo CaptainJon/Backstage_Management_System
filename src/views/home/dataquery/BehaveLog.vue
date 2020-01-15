@@ -38,7 +38,7 @@ import TimeSelect from '../../../publicComponents/TimeSelect'
 export default {
   data() {
     return {
-      loginId: null,
+      loginId: '',
       formData: [],
       loading: false
     }
@@ -49,7 +49,13 @@ export default {
   methods: {
     // 查询点击
     searchClicked(time) {
-      this.getLogData(time)
+      if (time.length !== 2) {
+        this.$alert('请选择时间', '提示', { type: 'warning' })
+      } else if (this.loginId === '') {
+        this.$alert('用户ID不能为空', '提示', { type: 'warning' })
+      } else {
+        this.getLogData(time)
+      }
     },
     // 获取日志数据
     getLogData(time) {
