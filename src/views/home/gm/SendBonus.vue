@@ -19,6 +19,8 @@
         size="small"
         v-show="sendBonusFormPanel === 'sendMail'"
         ref="sendEmailFormRef"
+        :rules="sendBonusRules"
+        hide-required-asterisk
       >
         <el-form-item label="起始时间" prop="startTime">
           <el-date-picker placeholder="选择起始时间" type="datetime" v-model="sendEmailForm.startTime"></el-date-picker>
@@ -65,6 +67,7 @@
         size="small"
         v-show="sendBonusFormPanel === 'unlockDungeon'"
         ref="unlockDungeonFormRef"
+        :rules="sendBonusRules"
       >
         <el-form-item label="服务器" prop="serverId">
           <el-select placeholder="请选择服务器" v-model="unlockDungeonForm.serverId">
@@ -94,6 +97,7 @@
         size="small"
         v-show="sendBonusFormPanel === 'addExp'"
         ref="addExpFormRef"
+        :rules="sendBonusRules"
       >
         <el-form-item label="服务器" prop="serverId">
           <el-select placeholder="请选择服务器" v-model="addExpForm.serverId">
@@ -123,6 +127,7 @@
         size="small"
         v-show="sendBonusFormPanel === 'resourceHotLoad'"
         ref="resourceHotLoadFormRef"
+        :rules="sendBonusRules"
       >
         <el-form-item label="服务器" prop="serverId">
           <el-select placeholder="请选择服务器" v-model="resourceHotLoadForm.serverId">
@@ -170,7 +175,17 @@ export default {
       resourceHotLoadForm: {
         serverId: null
       },
-      serverListData: []
+      serverListData: [],
+      sendBonusRules: {
+        startTime: [{ required: true, message: '请选择时间', trigger: 'blur' }],
+        endTime: [{ required: true, message: '请选择时间', trigger: 'blur' }],
+        serverId: [{ required: true, message: '请选择服务器', trigger: 'blur' }],
+        tagId: [{ required: true, message: '目标ID不能为空', trigger: 'blur' }],
+        mailTitle: [{ required: true, message: '邮件标题不能为空', trigger: 'blur' }],
+        mailContent: [{ required: true, message: '邮件内容不能为空', trigger: 'blur' }],
+        userId: [{ required: true, message: '玩家ID不能为空', trigger: 'blur' }],
+        bonusNum: [{ required: true, message: '关卡ID不能为空', trigger: 'blur' }]
+      }
     }
   },
   created() {
@@ -190,46 +205,62 @@ export default {
     },
     // 提交邮件
     sendEmail(chartRef) {
-      this.$http.get('/gadminc/business/sendMail.json', {
-        params: this.sendEmailForm
-      }).then(() => {
-        this.$message.success('发送成功')
-        this.resetForm(chartRef)
-      }).catch(() => {
-        this.$message.error('发送失败')
+      this.$refs[chartRef].validate(valid => {
+        if (valid) {
+          this.$http.get('/gadminc/business/sendMail.json', {
+            params: this.sendEmailForm
+          }).then(() => {
+            this.$message.success('发送成功')
+            this.resetForm(chartRef)
+          }).catch(() => {
+            this.$message.error('发送失败')
+          })
+        }
       })
     },
     // 解锁关卡
     unlockDungeon(chartRef) {
-      this.$http.get('/gadminc/business/openCheck.json', {
-        params: this.unlockDungeonForm
-      }).then(() => {
-        this.$message.success('提交成功')
-        this.resetForm(chartRef)
-      }).catch(() => {
-        this.$message.error('发送失败')
+      this.$refs[chartRef].validate(valid => {
+        if (valid) {
+          this.$http.get('/gadminc/business/openCheck.json', {
+            params: this.unlockDungeonForm
+          }).then(() => {
+            this.$message.success('提交成功')
+            this.resetForm(chartRef)
+          }).catch(() => {
+            this.$message.error('发送失败')
+          })
+        }
       })
     },
     // 增加经验
     addExp(chartRef) {
-      this.$http.get('//gadminc/business/addExp.json', {
-        params: this.addExpForm
-      }).then(() => {
-        this.$message.success('提交成功')
-        this.resetForm(chartRef)
-      }).catch(() => {
-        this.$message.error('提交失败')
+      this.$refs[chartRef].validate(valid => {
+        if (valid) {
+          this.$http.get('//gadminc/business/addExp.json', {
+            params: this.addExpForm
+          }).then(() => {
+            this.$message.success('提交成功')
+            this.resetForm(chartRef)
+          }).catch(() => {
+            this.$message.error('提交失败')
+          })
+        }
       })
     },
     // 资源热加载
     hotLoad(chartRef) {
-      this.$http.get('/gadminc/business/resLoad.json', {
-        params: this.resourceHotLoadForm
-      }).then(() => {
-        this.$message.success('提交成功')
-        this.resetForm(chartRef)
-      }).catch(() => {
-        this.$message.error('提交失败')
+      this.$refs[chartRef].validate(valid => {
+        if (valid) {
+          this.$http.get('/gadminc/business/resLoad.json', {
+            params: this.resourceHotLoadForm
+          }).then(() => {
+            this.$message.success('提交成功')
+            this.resetForm(chartRef)
+          }).catch(() => {
+            this.$message.error('提交失败')
+          })
+        }
       })
     }
   }
